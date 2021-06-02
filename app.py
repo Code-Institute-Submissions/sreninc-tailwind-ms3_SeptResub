@@ -21,7 +21,8 @@ css.build()
 @app.route("/")
 @app.route("/index")
 def generate():
-    return render_template("index.html")
+    title = "Your Restaurant Booking Partner"
+    return render_template("index.html", title=title)
 
 
 if __name__ == "__main__":
