@@ -34,25 +34,49 @@ def index():
 @app.route("/features")
 def features():
     title = "Features To Grow Your Restaurant"
-    return render_template("features.html", title=title)
+    header = {
+        "title": "Features",
+        "titleGreen": "for growth",
+        "subTitle": "Booking and guest management made to help you grow your restaurant.",
+        "displayButtons": "yes"
+    }
+    return render_template("features.html", title=title, header=header)
 
 
 @app.route("/contact")
 def contact():
     title = "Contact Us To Discuss Your Restaurants Needs"
-    return render_template("contact.html", title=title)
+    header = {
+        "title": "Need Help?",
+        "titleGreen": "We're here.",
+        "subTitle": "Let us answer your questions and guide you in the right direction.",
+        "displayButtons": "no"
+    }
+    return render_template("contact.html", title=title, header=header)
 
 
 @app.route("/signup")
 def signup():
     title = "Signup And Grow Your Restaurant"
-    return render_template("signup.html", title=title)
+    header = {
+        "title": "On your way",
+        "titleGreen": "to growth",
+        "subTitle": "Choose the package that suits your restaurant and let's get started!",
+        "displayButtons": "no"
+    }
+    return render_template("signup.html", title=title, header=header)
 
 
 @app.route("/login")
 def login():
     title = "Login To Your Account"
-    return render_template("login.html", title=title)
+    header = {
+        "title": "Welcome",
+        "titleGreen": "back home",
+        "subTitle": "We're glad you are back.",
+        "displayButtons": "no"
+    }
+    return render_template("login.html", title=title, header=header)
 
 
 if __name__ == "__main__":
