@@ -22,7 +22,13 @@ css.build()
 @app.route("/index")
 def index():
     title = "Your Restaurant Booking Partner"
-    return render_template("index.html", title=title)
+    header = {
+        "title": "Reservations",
+        "titleGreen": "made easy",
+        "subTitle": "Manage your operations in one place and get guests when you need them most.",
+        "displayButtons": "yes"
+    }
+    return render_template("index.html", title=title, header=header)
 
 
 @app.route("/features")
