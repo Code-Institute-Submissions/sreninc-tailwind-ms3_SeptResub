@@ -40,19 +40,19 @@
             <div class="hidden lg:block lg:ml-10">
               <div class="flex space-x-4">
                 <!-- Current: "bg-green-700 text-white", Default: "text-white hover:bg-green-500 hover:bg-opacity-75" -->
-                <a href="{{ url_for('dashboard') }}" class="bg-yellow-50 text-black rounded-md py-2 px-3 text-sm font-medium">
+                <a href="{{ url_for('dashboard') }}" class="text-black rounded-md py-2 px-3 text-sm font-medium {{ 'bg-yellow-50' if title == 'Dashboard' else 'hover:bg-yellow-50 hover:bg-opacity-75' }}">
                   Dashboard
                 </a>
 
-                <a href="{{ url_for('team') }}" class="text-black hover:bg-yellow-50 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">
+                <a href="{{ url_for('team') }}" class="text-black rounded-md py-2 px-3 text-sm font-medium {{ 'bg-yellow-50' if title == 'Team' else 'hover:bg-yellow-50 hover:bg-opacity-75' }}">
                   Team
                 </a>
 
-                <a href="{{ url_for('guests') }}" class="text-black hover:bg-yellow-50 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">
+                <a href="{{ url_for('guests') }}" class="text-black rounded-md py-2 px-3 text-sm font-medium {{ 'bg-yellow-50' if title == 'Guests' else 'hover:bg-yellow-50 hover:bg-opacity-75' }}">
                   Guests
                 </a>
 
-                <a href="{{ url_for('bookings') }}" class="text-black hover:bg-yellow-50 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">
+                <a href="{{ url_for('bookings') }}" class="text-black rounded-md py-2 px-3 text-sm font-medium {{ 'bg-yellow-50' if title == 'Bookings' else 'hover:bg-yellow-50 hover:bg-opacity-75' }}">
                   Bookings
                 </a>
 
