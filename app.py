@@ -95,7 +95,21 @@ def dashboard():
 @app.route("/team")
 def team():
     title = "Team"
-    return render_template("team.html", title=title)
+    account = mongo.db.users.find_one(
+        {"email": "sreninc@gmail.com"})["account"]
+    admin = mongo.db.users.find_one(
+        {"email": "sreninc@gmail.com"}
+    )["access"]
+    if admin == "admin":
+        admin = "true"
+    else:
+        admin = "false"
+
+    team = list(mongo.db.users.find({
+        "account": account
+    }))
+
+    return render_template("team.html", team=team, admin=admin, title=title)
 
 
 @app.route("/guests")
