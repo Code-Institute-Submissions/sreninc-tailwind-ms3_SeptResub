@@ -5,6 +5,7 @@ from flask import (
 from flask_assets import Bundle, Environment
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 if os.path.exists("env.py"):
     import env
@@ -18,6 +19,11 @@ css = Bundle("css/main-dev.css", output="css/main.css", filters="postcss")
 assets.register("css", css)
 css.build()
 
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
+mongo = PyMongo(app)
 
 @app.route("/")
 @app.route("/index")
@@ -99,9 +105,44 @@ def guests():
 
 
 @app.route("/bookings")
-def bookings():
+@app.route("/bookings/date/<date>/status/<status>")
+def bookings(date="", status=""):
     title = "Bookings"
-    return render_template("bookings.html", title=title)
+    if date and status:
+        bookings = list(mongo.db.bookings.find(
+            {
+                "status": status,
+                "date": date
+            }
+        ))
+    elif date:
+        bookings = list(mongo.db.bookings.find(
+            {
+                "date": date
+            }
+        ))
+    elif status:
+                bookings = list(mongo.db.bookings.find(
+            {
+                "status": status
+            }
+        ))
+    else:
+        bookings = list(mongo.db.bookings.find())
+
+    clients = list(mongo.db.clients.find(
+        {},
+        {"first_name": 1, "last_name": 1}))
+    for x in range(len(bookings)):
+        written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
+        bookings[x]["written_date"] = written_date.strftime("%a %d %b")
+        bookings[x]["rating"] = int(bookings[x]["rating"])
+
+        for y in range(len(clients)):
+            if str(clients[y]["_id"]) == str(bookings[x]["client_id"]):
+                bookings[x]["full_name"] = clients[y]["first_name"] + " " + clients[y]["last_name"]
+        
+    return render_template("bookings.html", bookings=bookings, title=title)
 
 
 if __name__ == "__main__":
