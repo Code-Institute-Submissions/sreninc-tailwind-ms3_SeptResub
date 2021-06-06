@@ -80,6 +80,30 @@ def login():
     return render_template("login.html", title=title, header=header)
 
 
+@app.route("/dashboard")
+def dashboard():
+    title = "Dashboard"
+    return render_template("dashboard.html", title=title)
+
+
+@app.route("/team")
+def team():
+    title = "Team"
+    return render_template("team.html", title=title)
+
+
+@app.route("/guests")
+def guests():
+    title = "Guests"
+    return render_template("guests.html", title=title)
+
+
+@app.route("/bookings")
+def bookings():
+    title = "Bookings"
+    return render_template("bookings.html", title=title)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
