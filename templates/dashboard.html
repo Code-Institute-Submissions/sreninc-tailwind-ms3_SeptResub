@@ -1,0 +1,69 @@
+{% extends "base-app.html" %}
+
+{% block content %}
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div>
+  <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+        Total Guests
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        71,897
+      </dd>
+    </div>
+
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+        Total Bookings
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        50,012
+      </dd>
+    </div>
+
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+        Total Sales
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        €2,500,000
+      </dd>
+    </div>
+  </dl>
+</div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div>
+  <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+        % No-Show Bookings
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        43%
+      </dd>
+    </div>
+
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+        % Bookings Completed
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        88%
+      </dd>
+    </div>
+
+    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-yellow-50 truncate uppercase ">
+        Average Booking Value
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+        €48.56
+      </dd>
+    </div>
+  </dl>
+</div>
+
+{% endblock content %}
