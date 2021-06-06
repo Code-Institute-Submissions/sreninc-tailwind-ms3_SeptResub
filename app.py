@@ -108,6 +108,11 @@ def guests():
 @app.route("/bookings/date/<date>/status/<status>")
 def bookings(date="", status=""):
     title = "Bookings"
+    if len(date) == 0:
+        date = datetime.today().strftime('%Y-%m-%d')
+    if status == "all":
+        status = ""
+
     if date and status:
         bookings = list(mongo.db.bookings.find(
             {
@@ -142,7 +147,7 @@ def bookings(date="", status=""):
             if str(clients[y]["_id"]) == str(bookings[x]["client_id"]):
                 bookings[x]["full_name"] = clients[y]["first_name"] + " " + clients[y]["last_name"]
         
-    return render_template("bookings.html", bookings=bookings, title=title)
+    return render_template("bookings.html", bookings=bookings, title=title, date=date, status=status)
 
 
 if __name__ == "__main__":

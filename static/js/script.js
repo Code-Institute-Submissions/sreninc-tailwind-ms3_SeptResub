@@ -25,3 +25,14 @@ function toggleUserMenu() {
         userMenu.classList.add("invisible");
     }
 }
+
+function filterBookings() {
+    date = document.getElementById("filterDate");
+    date ? date = date.value : date = "";
+    if (document.getElementById("filterStatus")) {
+        status = document.getElementById("filterStatus").value;
+    } else {
+        status= "all";
+    }
+    window.open('/bookings/date/' + date + '/status/' + status, '_self');
+}
