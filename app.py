@@ -124,6 +124,22 @@ def guests():
     return render_template("guests.html", guests=guests, title=title, pages=pages, current_page=current_page)
 
 
+@app.route("/guest/<id>")
+def guest(id):
+    guest = mongo.db.clients.find_one(
+            {"_id": ObjectId(id)})
+    guest["rating"] = int(guest["rating"])
+    bookings = list(mongo.db.bookings.find(
+        {"client_id": id}))
+    title = guest["first_name"] + " " + guest["last_name"]
+
+    for x in range(len(bookings)):
+        written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
+        bookings[x]["written_date"] = written_date.strftime("%a %d %b")
+        bookings[x]["full_name"] = guest["first_name"] + " " + guest["last_name"]
+        bookings[x]["rating"] = int(bookings[x]["rating"])
+    return render_template("guest-detail.html", guest=guest, bookings=bookings, title=title)
+
 @app.route("/bookings")
 @app.route("/bookings/date/<date>/status/<status>")
 def bookings(date="", status=""):
