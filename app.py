@@ -1,4 +1,5 @@
 import os
+import math
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -118,7 +119,9 @@ def guests():
     guests = list(mongo.db.clients.find())
     for x in range(len(guests)):
         guests[x]["rating"] = int(guests[x]["rating"])
-    return render_template("guests.html", guests=guests, title=title)
+    pages = int(math.ceil(len(guests) / 50))
+    current_page = 1
+    return render_template("guests.html", guests=guests, title=title, pages=pages, current_page=current_page)
 
 
 @app.route("/bookings")
