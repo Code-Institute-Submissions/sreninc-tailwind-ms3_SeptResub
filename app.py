@@ -115,7 +115,10 @@ def team():
 @app.route("/guests")
 def guests():
     title = "Guests"
-    return render_template("guests.html", title=title)
+    guests = list(mongo.db.clients.find())
+    for x in range(len(guests)):
+        guests[x]["rating"] = int(guests[x]["rating"])
+    return render_template("guests.html", guests=guests, title=title)
 
 
 @app.route("/bookings")
