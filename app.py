@@ -215,6 +215,23 @@ def bookings(date="", status=""):
     return render_template("bookings.html", bookings=bookings, title=title, date=date, status=status)
 
 
+@app.route("/booking/<id>")
+def booking(id):
+    booking = mongo.db.bookings.find_one(
+            {"_id": ObjectId(id)})
+
+    guest = mongo.db.clients.find_one(
+            {"_id": ObjectId(booking["client_id"])})
+    booking["rating"] = int(booking["rating"])
+    title = "Booking For: " + guest["first_name"] + " " + guest["last_name"]
+
+    written_date = datetime.strptime(booking["date"], '%Y-%m-%d')
+    booking["written_date"] = written_date.strftime("%a %d %b")
+    booking["full_name"] = guest["first_name"] + " " + guest["last_name"]
+    booking["rating"] = int(booking["rating"])
+    return render_template("booking-detail.html", guest=guest, booking=booking, title=title)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
