@@ -64,8 +64,10 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {{ booking.time }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {{ booking.full_name }}
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 underline">
+                    <a href="{{ url_for('guest', id=booking.client_id ) }}">
+                        {{ booking.full_name }}
+                    </a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {{ booking.people }}
