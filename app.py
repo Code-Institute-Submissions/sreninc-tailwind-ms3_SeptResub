@@ -90,7 +90,36 @@ def login():
 @app.route("/dashboard")
 def dashboard():
     title = "Dashboard"
-    return render_template("dashboard.html", title=title)
+    bookings = list(mongo.db.bookings.find())
+    guests = list(mongo.db.clients.find())
+    total_guests = len(guests)
+    total_bookings = len(bookings)
+    total_sales = 0
+    no_show_percentage = 0
+    completed_percentage = 0
+    avg_booking_value = 0
+    for booking in bookings:
+        print(booking["status"])
+    for booking in bookings:
+        if booking["status"] == "completed":
+            completed_percentage += 1
+            total_sales += int(booking["value"])
+        elif booking["status"] == "no-show":
+            no_show_percentage += 1
+    avg_booking_value = int(total_sales / completed_percentage)
+    total_sales = int(total_sales)
+    completed_percentage = int((completed_percentage / total_bookings) * 100)
+    no_show_percentage = int((no_show_percentage / total_bookings) * 100)
+
+    stats = {
+        "total_guests": total_guests,
+        "total_bookings": total_bookings,
+        "total_sales": total_sales,
+        "no_show_percentage": no_show_percentage,
+        "completed_percentage": completed_percentage,
+        "avg_booking_value": avg_booking_value
+    }
+    return render_template("dashboard.html", title=title, stats=stats)
 
 
 @app.route("/team")

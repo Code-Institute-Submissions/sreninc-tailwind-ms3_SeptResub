@@ -10,7 +10,7 @@
         Total Guests
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        71,897
+        {{ stats.total_guests }}
       </dd>
     </div>
 
@@ -19,7 +19,7 @@
         Total Bookings
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        50,012
+        {{ stats.total_bookings }}
       </dd>
     </div>
 
@@ -28,7 +28,7 @@
         Total Sales
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €2,500,000
+        €{{ stats.total_sales }}
       </dd>
     </div>
   </dl>
@@ -42,7 +42,7 @@
         % No-Show Bookings
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        43%
+        {{ stats.no_show_percentage }}%
       </dd>
     </div>
 
@@ -51,7 +51,7 @@
         % Bookings Completed
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        88%
+        {{ stats.completed_percentage }}%
       </dd>
     </div>
 
@@ -60,7 +60,7 @@
         Average Booking Value
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €48.56
+        €{{ stats.avg_booking_value }}
       </dd>
     </div>
   </dl>
