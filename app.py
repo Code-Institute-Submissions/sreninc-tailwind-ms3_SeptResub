@@ -14,6 +14,7 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
+
 assets = Environment(app)
 css = Bundle("css/main-dev.css", output="css/main.css", filters="postcss")
 
@@ -215,7 +216,7 @@ def bookings(date="", status=""):
     return render_template("bookings.html", bookings=bookings, title=title, date=date, status=status)
 
 
-@app.route("/booking/<id>")
+@app.route("/booking/<id>", methods=["GET", "POST"])
 def booking(id):
     booking = mongo.db.bookings.find_one(
             {"_id": ObjectId(id)})
@@ -230,6 +231,47 @@ def booking(id):
     booking["full_name"] = guest["first_name"] + " " + guest["last_name"]
     booking["rating"] = int(booking["rating"])
     return render_template("booking-detail.html", guest=guest, booking=booking, title=title)
+
+
+@app.route("/update_booking/<id>", methods=["GET", "POST"])
+def update_booking(id):
+    if request.method == "POST":
+        booking = mongo.db.bookings.find_one(
+            {"_id": ObjectId(id)})
+        booking_id = booking["_id"]
+
+        guest = mongo.db.clients.find_one(
+            {"_id": ObjectId(booking["client_id"])})
+
+        if request.form.get("notes_service"):
+            mongo.db.clients.update_one(
+                {"_id": ObjectId(guest["_id"])},
+                {"$set": {
+                    "notes_service": request.form.get("notes_service"),
+                    "notes_kitchen": request.form.get("notes_kitchen"),
+                    "notes_allergies": request.form.get("notes_allergies")
+                    }
+                }
+            )
+        else:
+            mongo.db.bookings.update(
+                {"_id": ObjectId(id)},
+                {"$set": {
+                    "date": request.form.get("date"),
+                    "time": request.form.get("time"),
+                    "people": request.form.get("people"),
+                    "status": request.form.get("status"),
+                    "value": request.form.get("value"),
+                    "updated_by": "sreninc@gmail.com",
+                    "updated_date": datetime.today()
+                    }
+                }
+            )
+            
+            return redirect(url_for('booking', id=id))
+
+        return redirect(url_for('booking', id=id))
+        
 
 
 if __name__ == "__main__":

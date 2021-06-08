@@ -51,7 +51,7 @@
                         <input type="number" name="mobile" id="mobile" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.mobile }}" disabled>
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="sm:col-span-2">
                         <label for="street_address" class="block text-sm font-medium text-gray-700">
                             Booking Rating
                         </label>
@@ -69,7 +69,12 @@
                         </div>
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="sm:col-span-2">
+                        <label for="people" class="block text-sm font-medium text-gray-700">People</label>
+                        <input type="number" name="people" id="people" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ booking.people }}">
+                    </div>
+
+                    <div class="sm:col-span-2">
                         <label for="value" class="block text-sm font-medium text-gray-700">Booking Value</label>
                         <input type="number" name="value" id="value" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ booking.value }}">
                     </div>
@@ -93,14 +98,14 @@
                     </div>
 
                     <div class="sm:col-span-2">
-                        <label for="country" class="block text-sm font-medium text-gray-700">
+                        <label for="status" class="block text-sm font-medium text-gray-700">
                             Status
                         </label>
                         <div class="mt-1">
-                            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                <option>Completed</option>
-                                <option>Confirmed</option>
-                                <option>No-Show</option>
+                            <select id="status" name="status" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                <option value="completed" {{ 'selected' if booking.status =="completed" else '' }}>Completed</option>
+                                <option value="confirmed" {{ 'selected' if booking.status =="confirmed" else '' }}>Confirmed</option>
+                                <option value="no-show" {{ 'selected' if booking.status =="no-show" else '' }}>No-Show</option>
                             </select>
                         </div>
                     </div>
@@ -122,46 +127,40 @@
 </div>
 
 <div class="mt-5 md:mt-0 md:col-span-2">
-    <form action="{{ url_for('update_booking', id=booking._id) }}" method="POST">
+    <form action="{{ url_for('update_booking', id=booking._id) }}" method="POST" id="guest_notes">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div>
-                    <label for="about" class="block text-sm font-medium text-gray-700">
+                    <label for="notes_service" class="block text-sm font-medium text-gray-700">
                         Service Notes
                     </label>
                     <p class="mt-2 text-sm text-gray-500">
                         Such as preferred seating, wine choice etc.
                     </p>
                     <div class="mt-1">
-                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
-                            {{ notes_service }}
-                        </textarea>
+                        <textarea id="notes_service" name="notes_service" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_service.strip() }}</textarea>
                     </div>
                 </div>
                 <div>
-                    <label for="about" class="block text-sm font-medium text-gray-700">
+                    <label for="notes_kitchen" class="block text-sm font-medium text-gray-700">
                         Kitchen Notes
                     </label>
                     <p class="mt-2 text-sm text-gray-500">
                         Such as standard requests like meat temperature etc.
                     </p>
                     <div class="mt-1">
-                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
-                            {{ guest.notes_kitchen }}
-                        </textarea>
+                        <textarea id="notes_kitchen" name="notes_kitchen" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_kitchen.strip() }}</textarea>
                     </div>
                 </div>
                 <div>
-                    <label for="about" class="block text-sm font-medium text-gray-700">
+                    <label for="notes_allergies" class="block text-sm font-medium text-gray-700">
                         Allergies & Intollerances
                     </label>
                     <p class="mt-2 text-sm text-gray-500">
                         Important information critical to the guests health.
                     </p>
                     <div class="mt-1">
-                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
-                            {{ guest.notes_allergies }}
-                        </textarea>
+                        <textarea id="notes_allergies" name="notes_allergies" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_allergies.strip() }}</textarea>
                     </div>
                 </div>
             </div>
