@@ -36,3 +36,8 @@ function filterBookings() {
     }
     window.open('/bookings/date/' + date + '/status/' + status, '_self');
 }
+
+// To show popups
+function generateFlashMessage(message) {
+    Swal.fire(message);
+}

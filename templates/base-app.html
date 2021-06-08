@@ -213,7 +213,12 @@
   </main>
 </div>
 
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}<script>generateFlashMessage("{{ message }}");</script>{% endfor %}
+        {% endif %}
+    {% endwith %}
   </body>
 </html>

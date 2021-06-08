@@ -253,6 +253,7 @@ def update_booking(id):
                     }
                 }
             )
+            flash("Guest Notes for " + guest["first_name"] + " " + guest["last_name"] + " Updated Successfully")
         else:
             mongo.db.bookings.update(
                 {"_id": ObjectId(id)},
@@ -267,6 +268,7 @@ def update_booking(id):
                     }
                 }
             )
+            flash("Booking Details for " + guest["first_name"] + " " + guest["last_name"] + "Updated Successfully")
             
             return redirect(url_for('booking', id=id))
 
