@@ -273,7 +273,16 @@ def update_booking(id):
             return redirect(url_for('booking', id=id))
 
         return redirect(url_for('booking', id=id))
-        
+
+
+@app.route("/delete_booking/<id>", methods=["GET", "POST"])
+def delete_booking(id):
+    booking = mongo.db.bookings.find_one(
+        {"_id": ObjectId(id)})
+    date = booking["date"]
+    mongo.db.bookings.remove({"_id": ObjectId(id)})
+    flash("Booking Successfully Deleted")
+    return redirect(url_for('/bookings/date/', date=date, status="all"))
 
 
 if __name__ == "__main__":
