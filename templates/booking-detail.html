@@ -19,150 +19,159 @@
   ```
 -->
 <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="#" method="POST">
+    <form action="{{ url_for('update_booking', id=booking._id) }}" method="POST">
         <div class="shadow overflow-hidden sm:rounded-md">
-          <div class="px-4 py-5 bg-white sm:p-6">
-            <div class="grid grid-cols-6 gap-6">
-                <div class="col-span-6">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    Update Booking Information
-                    </h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                    To update guest information please click <a href="{{ url_for('guest', id=guest._id ) }}" class="text-indigo-600 hover:text-indigo-900">here</a>
-                    </p>
+            <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
+                    <div class="col-span-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Update Booking Information
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-500">
+                        To update guest information please click <a href="{{ url_for('guest', id=guest._id ) }}" class="text-indigo-600 hover:text-indigo-900">here</a>
+                        </p>
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                        <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.first_name }}" disabled>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                        <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.last_name }}" disabled>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="email_address" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <input type="text" name="email_address" id="email_address" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.email }}" disabled>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
+                        <input type="number" name="mobile" id="mobile" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.mobile }}" disabled>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="street_address" class="block text-sm font-medium text-gray-700">
+                            Booking Rating
+                        </label>
+                        <div class="mt-1">
+                            {% for x in range(booking.rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            {% endfor %}
+                            {% for x in range(rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="value" class="block text-sm font-medium text-gray-700">Booking Value</label>
+                        <input type="number" name="value" id="value" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ booking.value }}">
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="date" class="block text-sm font-medium text-gray-700">
+                            Date
+                        </label>
+                        <div class="mt-1">
+                            <input type="date" name="date" id="date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="{{ booking.date }}">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="time" class="block text-sm font-medium text-gray-700">
+                            Time
+                        </label>
+                        <div class="mt-1">
+                            <input type="time" name="time" id="time" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="{{ booking.time }}">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="country" class="block text-sm font-medium text-gray-700">
+                            Status
+                        </label>
+                        <div class="mt-1">
+                            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                <option>Completed</option>
+                                <option>Confirmed</option>
+                                <option>No-Show</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-              <div class="col-span-6 sm:col-span-3">
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.first_name }}" disabled>
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.last_name }}" disabled>
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="email_address" class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="text" name="email_address" id="email_address" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.email }}" disabled>
-              </div>
-
-              <div class="col-span-6 sm:col-span-3">
-                <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
-                <input type="number" name="mobile" id="mobile" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.mobile }}" disabled>
-              </div>
-
-              <div class="sm:col-span-6">
-          <label for="street_address" class="block text-sm font-medium text-gray-700">
-            Booking Rating
-          </label>
-          <div class="mt-1">
-                {% for x in range(booking.rating) %}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                {% endfor %}
-                {% for x in range(rating) %}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                    </svg>
-                {% endfor %}
-          </div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label for="date" class="block text-sm font-medium text-gray-700">
-            Date
-          </label>
-          <div class="mt-1">
-            <input type="date" name="date" id="date" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="{{ booking.date }}">
-          </div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label for="time" class="block text-sm font-medium text-gray-700">
-            Time
-          </label>
-          <div class="mt-1">
-            <input type="time" name="time" id="time" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" value="{{ booking.time }}">
-          </div>
-        </div>
-
-        <div class="sm:col-span-2">
-          <label for="country" class="block text-sm font-medium text-gray-700">
-            Status
-          </label>
-          <div class="mt-1">
-            <select id="country" name="country" autocomplete="country" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-              <option>Completed</option>
-              <option>Confirmed</option>
-              <option>No-Show</option>
-            </select>
-          </div>
-        </div>
             </div>
-          </div>
-              <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-            Save
-        </button>
-    </div>
+            <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Save
+                </button>
+            </div>
         </div>
-      </form>
-    </div>
-<form>
-    
+    </form>
+</div>
+ 
 <div class="hidden sm:block" aria-hidden="true">
-  <div class="py-5">
-    <div class="border-t border-gray-200"></div>
-  </div>
+    <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+    </div>
 </div>
 
 <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="#" method="POST">
+    <form action="{{ url_for('update_booking', id=booking._id) }}" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
-                Service Notes
-              </label>
-              <p class="mt-2 text-sm text-gray-500">
-                Such as preferred seating, wine choice etc.
-              </p>
-              <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ notes_service }}</textarea>
-              </div>
+            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                <div>
+                    <label for="about" class="block text-sm font-medium text-gray-700">
+                        Service Notes
+                    </label>
+                    <p class="mt-2 text-sm text-gray-500">
+                        Such as preferred seating, wine choice etc.
+                    </p>
+                    <div class="mt-1">
+                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
+                            {{ notes_service }}
+                        </textarea>
+                    </div>
+                </div>
+                <div>
+                    <label for="about" class="block text-sm font-medium text-gray-700">
+                        Kitchen Notes
+                    </label>
+                    <p class="mt-2 text-sm text-gray-500">
+                        Such as standard requests like meat temperature etc.
+                    </p>
+                    <div class="mt-1">
+                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
+                            {{ guest.notes_kitchen }}
+                        </textarea>
+                    </div>
+                </div>
+                <div>
+                    <label for="about" class="block text-sm font-medium text-gray-700">
+                        Allergies & Intollerances
+                    </label>
+                    <p class="mt-2 text-sm text-gray-500">
+                        Important information critical to the guests health.
+                    </p>
+                    <div class="mt-1">
+                        <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">
+                            {{ guest.notes_allergies }}
+                        </textarea>
+                    </div>
+                </div>
             </div>
-            <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
-                Kitchen Notes
-              </label>
-              <p class="mt-2 text-sm text-gray-500">
-                Such as standard requests like meat temperature etc.
-              </p>
-              <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_kitchen }}</textarea>
-              </div>
+            <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Save
+                </button>
             </div>
-            <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
-                Allergies & Intollerances
-              </label>
-              <p class="mt-2 text-sm text-gray-500">
-                Important information critical to the guests health.
-              </p>
-              <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_allergies }}</textarea>
-              </div>
-            </div>
-          </div>
-          <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-              Save
-            </button>
-          </div>
         </div>
-      </form>
-    </div>
-
+    </form>
+</div>
 
 {% endblock content %}
