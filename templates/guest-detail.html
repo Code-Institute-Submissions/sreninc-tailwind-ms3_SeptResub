@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="#" method="POST">
+      <form action="{{ url_for('update_guest', id=guest._id) }}" method="POST">
         <div class="shadow overflow-hidden sm:rounded-md">
           <div class="px-4 py-5 bg-white sm:p-6">
             <div class="grid grid-cols-6 gap-6">
@@ -119,40 +119,40 @@
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="#" method="POST">
+      <form action="{{ url_for('update_guest', id=guest._id) }}" method="POST">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
             <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
+              <label for="notes_service " class="block text-sm font-medium text-gray-700">
                 Service Notes
               </label>
               <p class="mt-2 text-sm text-gray-500">
                 Such as preferred seating, wine choice etc.
               </p>
               <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_service}}</textarea>
+                <textarea id="notes_service" name="notes_service" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_service}}</textarea>
               </div>
             </div>
             <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
+              <label for="notes_kitchen" class="block text-sm font-medium text-gray-700">
                 Kitchen Notes
               </label>
               <p class="mt-2 text-sm text-gray-500">
                 Such as standard requests like meat temperature etc.
               </p>
               <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_kitchen }}</textarea>
+                <textarea id="notes_kitchen" name="notes_kitchen" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_kitchen }}</textarea>
               </div>
             </div>
             <div>
-              <label for="about" class="block text-sm font-medium text-gray-700">
+              <label for="notes_allergies" class="block text-sm font-medium text-gray-700">
                 Allergies & Intollerances
               </label>
               <p class="mt-2 text-sm text-gray-500">
                 Important information critical to the guests health.
               </p>
               <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_allergies }}</textarea>
+                <textarea id="notes_allergies" name="notes_allergies" rows="3" class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_allergies }}</textarea>
               </div>
             </div>
           </div>

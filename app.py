@@ -170,6 +170,48 @@ def guest(id):
         bookings[x]["rating"] = int(bookings[x]["rating"])
     return render_template("guest-detail.html", guest=guest, bookings=bookings, title=title)
 
+
+@app.route("/update_guest/<id>", methods=["GET", "POST"])
+def update_guest(id):
+    if request.method == "POST":
+        guest = mongo.db.clients.find_one(
+            {"_id": ObjectId(id)})
+
+        if request.form.get("notes_service"):
+            mongo.db.clients.update_one(
+                {"_id": ObjectId(id)},
+                {"$set": {
+                    "notes_service": request.form.get("notes_service"),
+                    "notes_kitchen": request.form.get("notes_kitchen"),
+                    "notes_allergies": request.form.get("notes_allergies")
+                    }
+                }
+            )
+            flash("Guest Notes for " + guest["first_name"] + " " + guest["last_name"] + " Updated Successfully")
+        else:
+            marketing_consent = "on" if request.form.get("marketingConsent") else "off"
+            dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d') if request.form.get("dob") else ""
+            mongo.db.clients.update_one(
+                {"_id": ObjectId(id)},
+                {"$set": {
+                    "first_name": request.form.get("first_name"),
+                    "last_name": request.form.get("last_name"),
+                    "email_address": request.form.get("email_address"),
+                    "mobile": request.form.get("mobile"),
+                    "dob": dob,
+                    "marketing_consent": marketing_consent,
+                    "updated_by": "sreninc@gmail.com",
+                    "updated_date": datetime.today()
+                    }
+                }
+            )
+            flash("Booking Details for " + guest["first_name"] + " " + guest["last_name"] + "Updated Successfully")
+            
+            return redirect(url_for('guest', id=id))
+
+        return redirect(url_for('guest', id=id))
+
+
 @app.route("/bookings")
 @app.route("/bookings/date/<date>/status/<status>")
 def bookings(date="", status=""):
