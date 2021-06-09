@@ -248,6 +248,13 @@ def update_guest(id):
         return redirect(url_for('guest', id=id))
 
 
+@app.route("/delete_guest/<id>", methods=["GET", "POST"])
+def delete_guest(id):
+    mongo.db.clients.remove({"_id": ObjectId(id)})
+    flash("Guest Successfully Deleted")
+    return redirect(url_for('guests'))
+
+
 @app.route("/bookings")
 @app.route("/bookings/date/<date>/status/<status>")
 def bookings(date="", status=""):
