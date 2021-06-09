@@ -168,7 +168,43 @@ def guest(id):
         bookings[x]["written_date"] = written_date.strftime("%a %d %b")
         bookings[x]["full_name"] = guest["first_name"] + " " + guest["last_name"]
         bookings[x]["rating"] = int(bookings[x]["rating"])
-    return render_template("guest-detail.html", guest=guest, bookings=bookings, title=title)
+
+    total_bookings = len(bookings)
+    total_sales = 0
+    no_show_percentage = 0
+    completed_percentage = 0
+    avg_booking_value = 0
+    for booking in bookings:
+        if booking["status"] == "completed":
+            completed_percentage += 1
+            total_sales += int(booking["value"])
+        elif booking["status"] == "no-show":
+            no_show_percentage += 1
+    avg_booking_value = int(total_sales / completed_percentage)
+    total_sales = int(total_sales)
+    completed_percentage = int((completed_percentage / total_bookings) * 100)
+    no_show_percentage = int((no_show_percentage / total_bookings) * 100)
+    guest_age = (datetime.now() - guest["created_date"]).days
+    # Calculating years
+    years = guest_age // 365
+
+    # Calculating months
+    months = (guest_age - years *365) // 30
+
+    # Calculating days
+    days = (guest_age - years * 365 - months*30)
+
+    guest_age = str(years) + "Y " + str(months) + "M " + str(days) + "D"
+
+    stats = {
+        "guest_age": guest_age,
+        "total_bookings": total_bookings,
+        "total_sales": total_sales,
+        "no_show_percentage": no_show_percentage,
+        "completed_percentage": completed_percentage,
+        "avg_booking_value": avg_booking_value
+    }
+    return render_template("guest-detail.html", guest=guest, bookings=bookings, stats=stats, title=title)
 
 
 @app.route("/update_guest/<id>", methods=["GET", "POST"])

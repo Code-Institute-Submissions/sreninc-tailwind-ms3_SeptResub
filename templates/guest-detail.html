@@ -190,10 +190,10 @@
             <dl class="my-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
     <div class="px-4 py-2 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
       <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Guests
+        Guest Age
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        71,897
+        {{ stats.guest_age }}
       </dd>
     </div>
 
@@ -202,7 +202,7 @@
         Total Bookings
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        50,012
+        {{ stats.total_bookings }}
       </dd>
     </div>
 
@@ -211,35 +211,35 @@
         Total Sales
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €2,500,000
+        €{{ stats.total_sales }}
       </dd>
     </div>
   </dl>
   <dl class="my-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
     <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
       <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Guests
+        % NO-SHOW BOOKINGS
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        71,897
+        {{ stats.no_show_percentage }}%
       </dd>
     </div>
 
     <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
       <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Bookings
+        % BOOKINGS COMPLETED
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        50,012
+        {{ stats.completed_percentage }}%
       </dd>
     </div>
 
     <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
       <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Sales
+        AVERAGE BOOKING VALUE
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €2,500,000
+        €{{ stats.avg_booking_value }}
       </dd>
     </div>
   </dl>
