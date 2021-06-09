@@ -99,18 +99,30 @@ def dashboard():
     no_show_percentage = 0
     completed_percentage = 0
     avg_booking_value = 0
-    for booking in bookings:
-        print(booking["status"])
+
     for booking in bookings:
         if booking["status"] == "completed":
             completed_percentage += 1
             total_sales += int(booking["value"])
         elif booking["status"] == "no-show":
             no_show_percentage += 1
-    avg_booking_value = int(total_sales / completed_percentage)
+
+    if avg_booking_value == 0:
+        avg_booking_value = 0
+    else:
+        avg_booking_value = int(total_sales / completed_percentage)
+
     total_sales = int(total_sales)
-    completed_percentage = int((completed_percentage / total_bookings) * 100)
-    no_show_percentage = int((no_show_percentage / total_bookings) * 100)
+
+    if completed_percentage == 0:
+        completed_percentage = 0
+    else:
+        completed_percentage = int((completed_percentage / total_bookings) * 100)
+
+    if no_show_percentage == 0:
+        no_show_percentage = 0
+    else:
+        no_show_percentage = int((no_show_percentage / total_bookings) * 100)
 
     stats = {
         "total_guests": total_guests,
