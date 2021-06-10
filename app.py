@@ -278,6 +278,7 @@ def update_guest(id):
                     "email_address": request.form.get("email_address"),
                     "mobile": request.form.get("mobile"),
                     "dob": dob,
+                    "rating": request.form.get("rating"),
                     "marketing_consent": marketing_consent,
                     "updated_by": "sreninc@gmail.com",
                     "updated_date": datetime.today()
