@@ -392,6 +392,7 @@ def update_booking(id):
                     "people": request.form.get("people"),
                     "status": request.form.get("status"),
                     "value": request.form.get("value"),
+                    "rating": request.form.get("rating"),
                     "updated_by": "sreninc@gmail.com",
                     "updated_date": datetime.today()
                     }
