@@ -99,10 +99,9 @@ def signin():
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["email"] = request.form.get("email").lower()
-                email = list(mongo.db.users.find({"email": session["email"]}))
-                flash("Welcome, {}".format(
-                    request.form.get("email")))
+                session["name"] = existing_user["name"]
+                session["access"] = existing_user["access"]
+                flash("Welcome " + session['name'])
                 return dashboard()
             else:
                 # invalid password match
