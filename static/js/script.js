@@ -100,3 +100,17 @@ function starRating(number) {
         }
     }
 }
+
+function tooltip(type) {
+    if (type == "guest") {
+        tippy('.bookler-system-set', {
+            content: 'This is set by the system',
+        });
+    };
+
+    if (type == "booking") {
+        tippy('.bookler-booking', {
+            content: 'Edit this field on the guests profile page',
+        });      
+    }
+}
