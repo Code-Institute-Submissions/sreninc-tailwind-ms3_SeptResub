@@ -86,7 +86,10 @@
 
               <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="created" class="block text-sm font-medium text-gray-700">Guest Since</label>
-                <input type="date" name="created" id="created" autocomplete="postal-code" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.created_date.strftime('%Y-%m-%d') }}" disabled>
+                <span class="bookler-system-set" onmouseover="tooltip()" onclick="tooltip()">
+                    <input type="date" name="created" id="created" autocomplete="postal-code" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md cursor-not-allowed" value="{{ guest.created_date.strftime('%Y-%m-%d') }}" disabled>
+                </span>
+                
               </div>
 
               <div class="col-span-6">
