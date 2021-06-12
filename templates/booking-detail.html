@@ -42,22 +42,30 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                        <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.first_name }}" disabled>
+                        <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
+                            <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.first_name }}" disabled>
+                        </span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                        <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.last_name }}" disabled>
+                        <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
+                            <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.last_name }}" disabled>
+                        </span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="email_address" class="block text-sm font-medium text-gray-700">Email address</label>
-                        <input type="text" name="email_address" id="email_address" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.email }}" disabled>
+                        <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
+                            <input type="text" name="email_address" id="email_address" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.email }}" disabled>
+                        </span>
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
-                        <input type="number" name="mobile" id="mobile" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.mobile }}" disabled>
+                        <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
+                            <input type="number" name="mobile" id="mobile" autocomplete="email" class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ guest.mobile }}" disabled>
+                        </span>
                     </div>
 
                     <div class="sm:col-span-2">
