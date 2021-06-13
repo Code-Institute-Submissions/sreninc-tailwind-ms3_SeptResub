@@ -184,6 +184,51 @@ def team():
     return render_template("team.html", team=team, admin=admin, title=title)
 
 
+@app.route("/user/<id>")
+def user(id):
+    title = "Team"
+    user = mongo.db.users.find_one(
+            {"_id": ObjectId(id)})
+    print(user)
+    return render_template("team-detail.html", title=title, user=user)
+
+
+@app.route("/update_user/<id>", methods=["GET", "POST"])
+def update_user(id):
+    if request.form.get("password"):
+        mongo.db.users.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": {
+                "name": request.form.get("name"),
+                "email": request.form.get("email"),
+                "access": request.form.get("access"),
+                "position": request.form.get("position"),
+                "password": request.form.get("password")
+                }
+            }
+        )
+    else:
+        mongo.db.users.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": {
+                "name": request.form.get("name"),
+                "email": request.form.get("email"),
+                "access": request.form.get("access"),
+                "position": request.form.get("position")
+                }
+            }
+        )
+        
+    flash("User Updated Successfully")
+    return user(id)
+
+
+@app.route("/delete_user/<id>", methods=["GET", "POST"])
+def delete_user(id):
+    mongo.db.users.remove({"_id": ObjectId(id)})
+    flash("User Successfully Deleted")
+    return redirect(url_for('team'))
+
 @app.route("/guests")
 @app.route("/guests/<next_key>")
 def guests(next_key=""):
