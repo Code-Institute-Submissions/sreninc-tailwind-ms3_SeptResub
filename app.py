@@ -566,6 +566,33 @@ def update_booking(id):
         return redirect(url_for('booking', id=id))
 
 
+@app.route("/add_booking/<id>", methods=["GET", "POST"])
+def add_booking(id):
+    title = "Add Booking"
+    if request.method == "POST":
+        booking = {
+            "client_id": id,
+            "date": request.form.get("date"),
+            "time": request.form.get("time"),
+            "people": request.form.get("people"),
+            "status": request.form.get("status"),
+            "value": request.form.get("value"),
+            "rating": request.form.get("rating"),
+            "created_by": session["email"],
+            "created_date": datetime.today(),
+            "updated_by": session["email"],
+            "updated_date": datetime.today()
+        }
+        _id = mongo.db.bookings.insert_one(booking).inserted_id
+
+        flash("Booking Added")
+        return redirect(url_for('booking', id=_id))
+    else:
+        guest = mongo.db.clients.find_one(
+            {"_id": ObjectId(id)})
+        return render_template("booking-add.html", title=title, guest=guest)
+
+
 @app.route("/delete_booking/<id>", methods=["GET", "POST"])
 def delete_booking(id):
     booking = mongo.db.bookings.find_one(
