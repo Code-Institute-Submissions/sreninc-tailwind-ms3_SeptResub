@@ -120,6 +120,16 @@ def signin():
     return redirect(url_for("login"))
 
 
+@app.route("/signout")
+def signout():
+    # remove email from session cookie
+    session.pop("email")
+    session.pop("user")
+    session.pop("name")
+    session.pop("access")
+    return redirect(url_for("login"))
+
+
 
 @app.route("/dashboard")
 def dashboard():
