@@ -94,15 +94,19 @@ def signin():
         # check if email exists in db
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
+        print(existing_user["_id"])
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
+                print(existing_user["_id"])
                 session["name"] = existing_user["name"]
+                session["email"] = existing_user["email"]
+                session["user"] = str(existing_user["_id"])
                 session["access"] = existing_user["access"]
                 flash("Welcome " + session['name'])
-                return dashboard()
+                return redirect(url_for("dashboard"))
             else:
                 # invalid password match
                 flash("Incorrect Email and/or Password")
