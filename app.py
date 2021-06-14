@@ -237,11 +237,43 @@ def update_user(id):
     return user(id)
 
 
+@app.route("/add_user", methods=["GET", "POST"])
+def add_user():
+    title = "Add Team Member"
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            flash("User, " + existing_user["name"] + ", already has this email address")
+            return render_template("team-add.html", title=title)
+
+        else:
+            user = {
+                "name": request.form.get("name"),
+                "email": request.form.get("email").lower(),
+                "position": request.form.get("position"),
+                "access": request.form.get("access"),
+                "password": generate_password_hash(request.form.get("password")),
+                "created_by": session["email"],
+                "created_date": datetime.today(),
+                "updated_by": session["email"],
+                "updated_date": datetime.today()
+            }
+            _id = mongo.db.users.insert_one(user).inserted_id
+
+            flash("User Added")
+            return redirect(url_for('user', id=_id))
+    else:
+        return render_template("team-add.html", title=title)
+
+
 @app.route("/delete_user/<id>", methods=["GET", "POST"])
 def delete_user(id):
     mongo.db.users.remove({"_id": ObjectId(id)})
     flash("User Successfully Deleted")
     return redirect(url_for('team'))
+
 
 @app.route("/guests")
 @app.route("/guests/<next_key>")
@@ -417,7 +449,6 @@ def add_guest():
 
             flash("Guest Added")
             return redirect(url_for('guest', id=_id))
-
     else:
         return render_template("guest-add.html", title=title)
 

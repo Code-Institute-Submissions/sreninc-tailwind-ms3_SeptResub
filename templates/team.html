@@ -1,13 +1,13 @@
 {% extends "base-app.html" %}
 
 {% block content %}
-<div class="flex flex-row-reverse space-x-4 space-x-reverse {{ '' if session['access'] != 'admin' else 'hidden'}}">
-    <button type="button" onclick="" class="inline-flex items-center px-4 py-2 mb-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+<div class="flex flex-row-reverse space-x-4 space-x-reverse {{ '' if session['access'] == 'admin' else 'hidden'}}">
+    <a type="button" href="{{ url_for('add_user') }}" class="inline-flex items-center px-4 py-2 mb-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
         </svg>
         Add Team Member
-    </button>
+    </a>
 </div>
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="flex flex-col">
@@ -26,7 +26,7 @@
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Role
               </th>
-              <th scope="col" class="relative px-6 py-3 {{ '' if session['access'] != 'admin' else 'hidden'}}">
+              <th scope="col" class="relative px-6 py-3 {{ '' if session['access'] == 'admin' else 'hidden'}}">
                 <span class="sr-only">Edit</span>
               </th>
             </tr>
@@ -59,7 +59,7 @@
                   {{ person.access }}
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium {{ '' if session['access'] != 'admin' else 'hidden'}}">
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium {{ '' if session['access'] == 'admin' else 'hidden'}}">
                 <a href="{{ url_for('user', id=person._id ) }}" class="text-green-600 hover:text-green-900" >Edit</a>
               </td>
             </tr>
