@@ -39,32 +39,44 @@ function filterBookings() {
 
 // To show popups
 function generateFlashMessage(message) {
-Swal.fire({
-  title: 'Success',
-  html: message,
-  timer: 1000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-    timerInterval = setInterval(() => {
-      const content = Swal.getHtmlContainer()
-      if (content) {
-        const b = content.querySelector('b')
-        if (b) {
-          b.textContent = Swal.getTimerLeft()
+    if(message.includes("already")) {
+        Swal.fire({
+            title: 'Action Failed',
+            text: message,
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Okay'
+        }).then((result) => {
+        })
+    } else {
+        Swal.fire({
+        title: 'Success',
+        html: message,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            timerInterval = setInterval(() => {
+            const content = Swal.getHtmlContainer()
+            if (content) {
+                const b = content.querySelector('b')
+                if (b) {
+                b.textContent = Swal.getTimerLeft()
+                }
+            }
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
         }
-      }
-    }, 100)
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
+        }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+        }
+        })
+    }
+
 }
 
 function confirmDeleteBooking(id) {

@@ -380,6 +380,48 @@ def update_guest(id):
         return redirect(url_for('guest', id=id))
 
 
+@app.route("/add_guest", methods=["GET", "POST"])
+def add_guest():
+    title = "Add Guest"
+    if request.method == "POST":
+        existing_user = mongo.db.clients.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            flash("Guest, " + existing_user["first_name"] + " " + existing_user["last_name"] + ", already has this email address")
+            return render_template("guest-add.html", title=title)
+
+        else:
+            marketing_consent = "on" if request.form.get("marketingConsent") else "off"
+            dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d') if request.form.get("dob") else ""
+            client = {
+                "first_name": request.form.get("first_name"),
+                "last_name": request.form.get("last_name"),
+                "email": request.form.get("email").lower(),
+                "mobile": request.form.get("mobile"),
+                "marketing_consent": marketing_consent,
+                "rating": request.form.get("rating"),
+                "dob": dob,
+                "bookings": 0,
+                "bookings_completed": 0,
+                "value": 0,
+                "notes_service": "",
+                "notes_kitchen": "",
+                "notes_allergies": "",
+                "created_by": session["email"],
+                "created_date": datetime.today(),
+                "updated_by": session["email"],
+                "updated_date": datetime.today()
+            }
+            _id = mongo.db.clients.insert_one(client).inserted_id
+
+            flash("Guest Added")
+            return redirect(url_for('guest', id=_id))
+
+    else:
+        return render_template("guest-add.html", title=title)
+
+
 @app.route("/delete_guest/<id>", methods=["GET", "POST"])
 def delete_guest(id):
     mongo.db.clients.remove({"_id": ObjectId(id)})
