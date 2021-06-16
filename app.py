@@ -182,6 +182,10 @@ def dashboard():
 @app.route("/team")
 def team():
     title = "Team"
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    per_page = 5
+
     account = mongo.db.users.find_one(
         {"email": "sreninc@gmail.com"})["account"]
     admin = mongo.db.users.find_one(
@@ -195,8 +199,17 @@ def team():
     team = list(mongo.db.users.find({
         "account": account
     }))
+    total = len(team)
+    pagination_team = get_pagination(data=team, page=page, offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total)  
 
-    return render_template("team.html", team=team, admin=admin, title=title)
+    return render_template("team.html", 
+                            admin=admin, 
+                            team=pagination_team,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            title=title)
 
 
 @app.route("/user/<id>")
@@ -286,7 +299,7 @@ def guests():
     title = "Guests"
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
-    per_page = 1
+    per_page = 5
 
     guests = list(mongo.db.clients.find())
     for x in range(len(guests)):
@@ -294,9 +307,7 @@ def guests():
 
     total = len(guests)
     pagination_guests = get_pagination(data=guests, page=page, offset=offset, per_page=per_page)
-    print(pagination_guests)
     pagination = Pagination(page=page, per_page=per_page, total=total)  
-    dir(pagination)
 
     return render_template('guests.html',
                            guests=pagination_guests,

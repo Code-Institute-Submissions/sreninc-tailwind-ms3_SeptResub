@@ -73,4 +73,16 @@
   </div>
 </div>
 
+<div class="hidden">
+{{ pagination.links }}
+</div>
+
+<div id="pagePagination">
+
+</div>
 {% endblock content %}
+{% block scripts %}
+<script>
+    stylePagination();
+</script>
+{% endblock scripts %}
