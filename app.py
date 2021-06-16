@@ -198,7 +198,7 @@ def team():
 
     team = list(mongo.db.users.find({
         "account": account
-    }))
+    }).sort("name"))
     total = len(team)
     pagination_team = get_pagination(data=team, page=page, offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total)  
