@@ -301,7 +301,7 @@ def guests():
                                            per_page_parameter='per_page')
     per_page = 5
 
-    guests = list(mongo.db.clients.find())
+    guests = list(mongo.db.clients.find().sort("first_name"))
     for x in range(len(guests)):
         guests[x]["rating"] = int(guests[x]["rating"])
 
@@ -629,60 +629,6 @@ def delete_booking(id):
     mongo.db.bookings.remove({"_id": ObjectId(id)})
     flash("Booking Successfully Deleted")
     return redirect(url_for('/bookings/date/', date=date, status="all"))
-
-
-def generate_pagination_query(query, sort=None, next_key=None):
-    sort_field = None if sort is None else sort[0]
-    print("sort field")
-    print(sort_field)
-
-    def next_key_fn(items):
-        if len(items) == 0:
-            return None
-        item = items[-1]
-        if sort_field is None:
-            return {'_id': item['_id']}
-        else:
-            return {'_id': item['_id'], sort_field: item[sort_field]}
-
-    if next_key is None:
-        return query, next_key_fn
-
-    paginated_query = query.copy()
-
-    if sort is None:
-        paginated_query['_id'] = {'$gt': next_key['_id']}
-        return paginated_query, next_key_fn
-
-    sort_operator = '$gt' if sort[1] == 1 else '$lt'
-
-    pagination_query = [
-        {sort_field: {sort_operator: next_key[sort_field]}},
-        {'$and': [
-            {sort_field: next_key[sort_field]},
-            {'_id': {sort_operator: next_key['_id']}},
-        ]},
-    ]
-
-    if '$or' not in paginated_query:
-        paginated_query['$or'] = pagination_query
-    else:
-        paginated_query = {'$and': [query, {'$or': pagination_query}]}
-
-    return paginated_query, next_key_fn
-
-
-@app.route('/query')
-def query():
-    query = {}
-    sort = ['first_name', -1]
-    limit = 2
-    query, next_key_fn = generate_pagination_query(query, sort)
-    guests = list(mongo.db.clients.find(query).limit(limit).sort([sort]))
-    next_key = next_key_fn(guests)
-    print(guests)
-    print(next_key)
-    return redirect(url_for('guests'))
 
 
 if __name__ == "__main__":
