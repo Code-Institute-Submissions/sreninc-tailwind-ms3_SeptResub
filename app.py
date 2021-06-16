@@ -131,7 +131,6 @@ def signout():
     return redirect(url_for("login"))
 
 
-
 @app.route("/dashboard")
 def dashboard():
     title = "Dashboard"
@@ -294,14 +293,18 @@ def get_pagination(data, page, offset=0, per_page=10):
     return data[offset: offset + per_page]
 
 
+@app.route("/guests/<search>")
 @app.route("/guests")
-def guests():
+def guests(search=""):
     title = "Guests"
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
     per_page = 5
 
-    guests = list(mongo.db.clients.find().sort("first_name"))
+    if search:
+        guests = list(mongo.db.clients.find({"$text": {"$search": search}}).sort("first_name"))
+    else:
+        guests = list(mongo.db.clients.find().sort("first_name"))
     for x in range(len(guests)):
         guests[x]["rating"] = int(guests[x]["rating"])
 
@@ -309,13 +312,17 @@ def guests():
     pagination_guests = get_pagination(data=guests, page=page, offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total)  
 
-    return render_template('guests.html',
-                           guests=pagination_guests,
-                           page=page,
-                           per_page=per_page,
-                           pagination=pagination,
-                           title=title
-                        )
+    if len(guests) == 1:
+        return guest(guests[0]["_id"])
+    else:
+        return render_template('guests.html',
+                            guests=pagination_guests,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            title=title,
+                            search=search
+                            )
 
 
 @app.route("/guest/<id>")
