@@ -356,6 +356,14 @@
                 {% endfor %}
             </tbody>
             </table>
+            
+        </div>
+        <div class="hidden">
+            {{ pagination.links }}
+        </div>
+
+        <div id="pagePagination">
+
         </div>
         </div>
     </div>
@@ -363,4 +371,10 @@
     </div>
     </div>
 
+
 {% endblock content %}
+{% block scripts %}
+<script>
+    stylePagination();
+</script>
+{% endblock scripts %}

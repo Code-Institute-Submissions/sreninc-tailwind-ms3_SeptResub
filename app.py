@@ -326,6 +326,9 @@ def guest(id):
     bookings = list(mongo.db.bookings.find(
         {"client_id": id}))
     title = guest["first_name"] + " " + guest["last_name"]
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    per_page = 1
 
     for x in range(len(bookings)):
         written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
@@ -382,7 +385,17 @@ def guest(id):
         "completed_percentage": completed_percentage,
         "avg_booking_value": avg_booking_value
     }
-    return render_template("guest-detail.html", guest=guest, bookings=bookings, stats=stats, title=title)
+
+    pagination_bookings = get_pagination(data=bookings, page=page, offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total_bookings)
+    return render_template("guest-detail.html", 
+                            guest=guest, 
+                            bookings=pagination_bookings,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination, 
+                            stats=stats, 
+                            title=title)
 
 
 @app.route("/update_guest/<id>", methods=["GET", "POST"])

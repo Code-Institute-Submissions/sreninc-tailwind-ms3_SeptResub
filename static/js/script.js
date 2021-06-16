@@ -223,6 +223,9 @@ function  stylePagination() {
             newPagination.getElementsByClassName('middlePaginationDiv')[0].appendChild(anchor);
         }
         
+        if(anchor.href) {
+            anchor.setAttribute('href', anchor.getAttribute('href') + "#pagePagination");
+        }
     }
     document.getElementById('pagePagination').appendChild(newPagination);
 }
