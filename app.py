@@ -8,6 +8,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_paginate import Pagination, get_page_args
 if os.path.exists("env.py"):
     import env
 
@@ -275,32 +276,35 @@ def delete_user(id):
     return redirect(url_for('team'))
 
 
+def get_pagination(data, page, offset=0, per_page=10):
+    offset = ((page - 1) * per_page)
+    return data[offset: offset + per_page]
+
+
 @app.route("/guests")
-@app.route("/guests/<next_key>")
-def guests(next_key=""):
+def guests():
     title = "Guests"
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    per_page = 1
+
     guests = list(mongo.db.clients.find())
-    
-    pages = int(math.ceil(len(guests) / 2))    
-    current_page = 1
-
-    query = {}
-    sort = ['_id', 1]
-    limit = 2
-
-    if next_key:
-        query, next_key_fn = generate_pagination_query(query, sort, next_key)
-        guests = list(mongo.db.guests.find(query).limit(limit).sort([sort]))
-    else:
-        query, next_key_fn = generate_pagination_query(query, sort)
-        guests = list(mongo.db.clients.find(query).limit(limit).sort([sort]))
-        next_key = next_key_fn(guests)
-
-    print(next_key)
-    
     for x in range(len(guests)):
         guests[x]["rating"] = int(guests[x]["rating"])
-    return render_template("guests.html", guests=guests, title=title, pages=pages, current_page=current_page, next_key=next_key)
+
+    total = len(guests)
+    pagination_guests = get_pagination(data=guests, page=page, offset=offset, per_page=per_page)
+    print(pagination_guests)
+    pagination = Pagination(page=page, per_page=per_page, total=total)  
+    dir(pagination)
+
+    return render_template('guests.html',
+                           guests=pagination_guests,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination,
+                           title=title
+                        )
 
 
 @app.route("/guest/<id>")
