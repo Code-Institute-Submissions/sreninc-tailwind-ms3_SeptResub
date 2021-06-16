@@ -319,6 +319,7 @@
                 </tr>
             </thead>
             <tbody>
+                {% if bookings %}
                 {% for booking in bookings %}
                 {% set rating = 5 - booking.rating %}
                     <tr class="bg-white">
@@ -354,6 +355,13 @@
                     </td>
                     </tr>
                 {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-green-400 h-48 font-bold">
+                            No Bookings Yet
+                        </td>
+                    </tr>
+                {% endif %}
             </tbody>
             </table>
             
