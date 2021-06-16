@@ -324,11 +324,11 @@ def guest(id):
             {"_id": ObjectId(id)})
     guest["rating"] = int(guest["rating"])
     bookings = list(mongo.db.bookings.find(
-        {"client_id": id}))
+        {"client_id": id}).sort([("date", -1), ("time", -1)]))
     title = guest["first_name"] + " " + guest["last_name"]
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
-    per_page = 1
+    per_page = 5
 
     for x in range(len(bookings)):
         written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
