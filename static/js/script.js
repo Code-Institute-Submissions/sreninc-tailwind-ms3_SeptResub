@@ -44,7 +44,7 @@ function generateFlashMessage(message) {
             title: 'Action Failed',
             text: message,
             icon: 'warning',
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#064e3b',
             confirmButtonText: 'Okay'
         }).then((result) => {
         })
@@ -52,10 +52,11 @@ function generateFlashMessage(message) {
         Swal.fire({
         title: 'Success',
         html: message,
+        confirmButtonColor: '#064e3b',
+        confirmButtonText: 'Okay',
         timer: 1000,
-        timerProgressBar: true,
+        icon: 'success',
         didOpen: () => {
-            Swal.showLoading()
             timerInterval = setInterval(() => {
             const content = Swal.getHtmlContainer()
             if (content) {
@@ -64,19 +65,13 @@ function generateFlashMessage(message) {
                 b.textContent = Swal.getTimerLeft()
                 }
             }
-            }, 100)
+            }, 250)
         },
         willClose: () => {
             clearInterval(timerInterval)
         }
-        }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-            console.log('I was closed by the timer')
-        }
         })
     }
-
 }
 
 function confirmDeleteBooking(id) {
