@@ -515,27 +515,17 @@ def bookings(date="", status=""):
     if status == "all":
         status = ""
 
-    if date and status:
-        bookings = list(mongo.db.bookings.find(
-            {
-                "status": status,
-                "date": date
-            }
-        ))
-    elif date:
-        bookings = list(mongo.db.bookings.find(
-            {
-                "date": date
-            }
-        ))
-    elif status:
-                bookings = list(mongo.db.bookings.find(
-            {
-                "status": status
-            }
-        ))
-    else:
+    query = {}
+    if date:
+        query["date"] = date
+    if status:
+        query["status"] = status
+
+    if not query:
         bookings = list(mongo.db.bookings.find())
+    else:
+        bookings = list(mongo.db.bookings.find(query))
+
 
     clients = list(mongo.db.clients.find(
         {},
