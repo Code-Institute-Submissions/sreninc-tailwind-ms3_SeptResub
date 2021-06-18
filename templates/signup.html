@@ -5,7 +5,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative bg-white">
   <div class="absolute inset-0" aria-hidden="true">
-    <div class="absolute inset-y-0 right-0 w-1/2 bg-green-400"></div>
+    <div class="absolute inset-y-0 right-0 w-1/2"></div>
   </div>
   <div class="relative max-w-7xl mx-auto lg:px-8 lg:grid lg:grid-cols-2">
     <div class="bg-white py-16 px-4 sm:py-24 sm:px-6 lg:px-0 lg:pr-8">
@@ -77,26 +77,26 @@
         </dl>
       </div>
     </div>
-    <div class="bg-green-400 py-16 px-4 sm:py-24 sm:px-6 lg:bg-none lg:px-0 lg:pl-8 lg:flex lg:items-center lg:justify-end">
+    <div class="py-16 px-4 sm:py-24 sm:px-6 lg:bg-none lg:px-0 lg:pl-8 lg:flex lg:items-center lg:justify-end">
       <div class="max-w-lg mx-auto w-full space-y-8 lg:mx-0">
         <div>
           <h2 class="sr-only">Price</h2>
           <p class="relative grid grid-cols-2">
             <span class="flex flex-col text-center">
-              <span class="text-5xl font-extrabold text-white tracking-tight">€0</span>
-              <span class="mt-2 text-base font-medium text-yellow-50">Setup fee</span>
+              <span class="text-5xl font-extrabold tracking-tight">€0</span>
+              <span class="mt-2 text-base font-medium">Setup fee</span>
               <span class="sr-only">plus</span>
             </span>
             <span class="pointer-events-none absolute h-12 w-full flex items-center justify-center" aria-hidden="true">
               <!-- Heroicon name: outline/plus -->
-              <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
             </span>
             <span>
               <span class="flex flex-col text-center">
-                <span class="text-5xl font-extrabold text-white tracking-tight">€29</span>
-                <span class="mt-2 text-base font-medium text-yellow-50">Per month</span>
+                <span class="text-5xl font-extrabold tracking-tight">€29</span>
+                <span class="mt-2 text-base font-medium">Per month</span>
               </span>
             </span>
           </p>
@@ -150,10 +150,10 @@
             <span>14 days free</span>
           </li>
         </ul>
-        <a href="#" class="bg-green-900 border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-yellow-50 hover:bg-white hover:text-green-900 md:px-10">
+        <a href="#" class="bg-green-900 border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-yellow-50 hover:bg-green-400 hover:text-green-900 md:px-10">
           Get started today
         </a>
-        <p class="block text-center text-base font-medium text-yellow-50 hover:text-white">
+        <p class="block text-center text-base font-medium">
           Use for free for 14 days
         </p>
       </div>
@@ -164,16 +164,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <section class="py-12 bg-gray-50 overflow-hidden md:py-20 lg:py-24">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <svg class="absolute top-full right-full transform translate-x-1/3 -translate-y-1/4 lg:translate-x-1/2 xl:-translate-y-1/2" width="404" height="404" fill="none" viewBox="0 0 404 404" role="img" aria-labelledby="svg-workcation">
-      <title id="svg-workcation">Savoy</title>
-      <defs>
-        <pattern id="ad119f34-7694-4c31-947f-5c9d249b21f3" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-        </pattern>
-      </defs>
-      <rect width="404" height="404" fill="url(#ad119f34-7694-4c31-947f-5c9d249b21f3)" />
-    </svg>
-
     <div class="relative">
       <img class="mx-auto h-8" src="https://tailwindui.com/img/logos/workcation-logo-indigo-600-mark-gray-800-and-indigo-600-text.svg" alt="Workcation">
       <blockquote class="mt-10">
@@ -194,7 +184,7 @@
                 <path d="M11 0h3L9 20H6l5-20z" />
               </svg>
 
-              <div class="text-base font-medium text-gray-500">Restaurant Owner, Savoy</div>
+              <div class="text-base font-medium text-gray-500">Restaurant Manager, Workcation</div>
             </div>
           </div>
         </footer>
@@ -206,7 +196,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative bg-gray-800">
   <div class="h-56 bg-green-400 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixqx=PLr574P0bJ&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=6366F1&sat=-100&blend-mode=multiply" alt="">
+    <img class="w-full h-full object-cover" src="{{ url_for('static', filename='img/support.jpg') }}" alt="">
   </div>
   <div class="relative max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
     <div class="md:ml-auto md:w-1/2 md:pl-10">
@@ -221,7 +211,7 @@
       </p>
       <div class="mt-8">
         <div class="inline-flex rounded-md shadow">
-          <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+          <a href="{{ url_for('contact') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
             Contact us
             <!-- Heroicon name: solid/external-link -->
             <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
