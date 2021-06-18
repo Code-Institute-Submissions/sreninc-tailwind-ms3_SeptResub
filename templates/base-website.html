@@ -49,7 +49,7 @@
 
                 <a href="{{ url_for('signup') }}" class="font-medium text-gray-500 hover:text-gray-800">Signup</a>
 
-                <a href="{{ url_for('login') }}" class="font-medium text-gray-900 hover:text-gray-400">Log in</a>
+                <button onclick="loginModal()" class="font-medium text-gray-900 hover:text-gray-400">Log in</button>
                 </div>
             </nav>
             </div>
@@ -89,9 +89,9 @@
 
                 <a href="{{ url_for('signup') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-50">Signup</a>
                 </div>
-                <a href="{{ url_for('login') }}" class="block w-full px-5 py-3 text-center font-medium text-green-400 bg-green-50 hover:bg-green-100">
+                <button onclick="loginModal()" class="block w-full px-5 py-3 text-center font-medium text-green-400 bg-green-50 hover:bg-green-100">
                 Log in
-                </a>
+                </button>
             </div>
             </div>
         </div>
@@ -156,9 +156,9 @@
         </div>
 
         <div class="px-5 py-2">
-            <a href="{{ url_for('login') }}" class="text-base text-gray-900 hover:text-gray-400">
+            <button onclick="loginModal()" class="text-base text-gray-900 hover:text-gray-400">
             Login
-            </a>
+            </button>
         </div>
         </nav>
         <div class="mt-8 flex justify-center space-x-6">
@@ -202,6 +202,57 @@
         </p>
     </div>
     </footer>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div id="loginModal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+    <div onclick="loginModal()" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+<div class="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Sign in to your account
+      </h2>
+    </div>
+    <form class="mt-8 space-y-6" form method="POST" action="{{ url_for('signin') }}">
+      <input type="hidden" name="remember" value="true">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="loginEmail" class="sr-only">Email address</label>
+          <input id="loginEmail" name="loginEmail" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+        </div>
+        <div>
+          <label for="loginPassword" class="sr-only">Password</label>
+          <input id="loginPassword" name="loginPassword" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-900 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <!-- Heroicon name: solid/lock-closed -->
+            <svg class="h-5 w-5 text-white group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}
     {% endblock scripts %}

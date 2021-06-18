@@ -86,49 +86,33 @@ def signup():
     return render_template("signup.html", title=title, header=header)
 
 
-@app.route("/login")
-def login():
-    title = "Login To Your Account"
-    header = {
-        "title": "Welcome",
-        "titleGreen": "back home",
-        "subTitle": "We're glad you are back.",
-        "displayButtons": "no"
-    }
-    if session.get("name"):
-        return redirect(url_for("dashboard"))
-    return render_template("login.html", title=title, header=header)
-
-
 @app.route("/signin", methods=["GET", "POST"])
 def signin():
     if request.method == "POST":
         # check if email exists in db
         existing_user = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
+            {"email": request.form.get("loginEmail").lower()})
         print(existing_user["_id"])
 
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                print(existing_user["_id"])
+                existing_user["password"], request.form.get("loginPassword")):
                 session["name"] = existing_user["name"]
                 session["email"] = existing_user["email"]
                 session["user"] = str(existing_user["_id"])
                 session["access"] = existing_user["access"]
-                flash("Welcome " + session['name'])
                 return redirect(url_for("dashboard"))
             else:
                 print("invalid")
-                return redirect(url_for("login"))
+                return redirect(url_for("index"))
 
         else:
             # Email doesn't exist
             print("wrong email")
-            return redirect(url_for("login"))
+            return redirect(url_for("index"))
 
-    return redirect(url_for("login"))
+    return redirect(url_for("index"))
 
 
 @app.route("/signout")
@@ -138,7 +122,7 @@ def signout():
     session.pop("user")
     session.pop("name")
     session.pop("access")
-    return redirect(url_for("login"))
+    return redirect(url_for("index"))
 
 
 @app.route("/dashboard")
