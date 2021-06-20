@@ -354,9 +354,15 @@ def guests(search=""):
     per_page = 5
 
     if search:
-        guests = list(mongo.db.clients.find({"$text": {"$search": search}}).sort("first_name"))
+        guests = list(mongo.db.clients.find({
+            "account_id": ObjectId(session["account_id"]),
+            "$text": {"$search": search}}).sort("first_name"))
     else:
-        guests = list(mongo.db.clients.find().sort("first_name"))
+        guests = list(mongo.db.clients.find(
+            {
+                "account_id": ObjectId(session["account_id"])
+            }
+        ).sort("first_name"))
     for x in range(len(guests)):
         guests[x]["rating"] = int(guests[x]["rating"])
 
@@ -532,6 +538,7 @@ def add_guest():
                     "notes_service": "",
                     "notes_kitchen": "",
                     "notes_allergies": "",
+                    "account_id": ObejctId(session["account_id"]),
                     "created_by": session["email"],
                     "created_date": datetime.today(),
                     "updated_by": session["email"],
