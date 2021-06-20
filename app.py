@@ -93,16 +93,26 @@ def signup():
             print(signup)
             return render_template("signup.html", title=title, header=header, signup=signup)
         else:
+            account = {
+                "email": request.form.get("signupEmail").lower(),
+                "name": request.form.get("signupName")
+            }
+            account_id = mongo.db.business.insert_one(account).inserted_id
             user = {
                 "email": request.form.get("signupEmail").lower(),
                 "password": generate_password_hash(request.form.get("signupPassword")),
-                "name": request.form.get("signupName")
+                "name": request.form.get("signupName"),
+                "access": "admin",
+                "account_holder": "yes",
+                "account_id": account_id
             }
             _id = mongo.db.users.insert_one(user).inserted_id
+
             session["name"] = request.form.get("signupName")
             session["email"] = request.form.get("signupEmail").lower()
             session["user"] = str(_id)
             session["access"] = 'admin'
+            session["account_id"] = str(account_id)
             return redirect(url_for("dashboard"))
 
     signup = ""
@@ -124,6 +134,7 @@ def signin():
                 session["email"] = existing_user["email"]
                 session["user"] = str(existing_user["_id"])
                 session["access"] = existing_user["access"]
+                session["account_id"] = str(existing_user["account_id"])
                 return redirect(url_for("dashboard"))
             else:
                 print("invalid")
@@ -144,14 +155,28 @@ def signout():
     session.pop("user")
     session.pop("name")
     session.pop("access")
+    session.pop("account_id")
     return redirect(url_for("index"))
 
 
 @app.route("/dashboard")
 def dashboard():
     title = "Dashboard"
-    bookings = list(mongo.db.bookings.find())
-    guests = list(mongo.db.clients.find())
+    bookings = list(
+        mongo.db.bookings.find(
+            { 
+                "account_id": session["account_id"] 
+            }
+        )
+    )
+    guests = list(
+                mongo.db.clients.find(
+            { 
+                "account_id": session["account_id"] 
+            }
+        )
+    )
+
     total_guests = len(guests)
     total_bookings = len(bookings)
     total_sales = 0
