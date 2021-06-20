@@ -1,5 +1,6 @@
 {% extends "base-website.html" %}
 
+
 {% block content %}
 
 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -150,9 +151,9 @@
             <span>14 days free</span>
           </li>
         </ul>
-        <a href="#" class="bg-green-900 border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-yellow-50 hover:bg-green-400 hover:text-green-900 md:px-10">
+        <button onclick="signupModal()" class="bg-green-900 border border-transparent rounded-md w-full px-8 py-4 flex items-center justify-center text-lg leading-6 font-medium text-yellow-50 hover:bg-green-400 hover:text-green-900 md:px-10">
           Get started today
-        </a>
+        </button>
         <p class="block text-center text-base font-medium">
           Use for free for 14 days
         </p>
@@ -225,5 +226,57 @@
   </div>
 </div>
 
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div id="signupModal" class="{{ '' if signup == 'existing' else 'hidden' }} fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+
+    <div onclick="signupModal()" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+    <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+            {% if signup %}
+        <h2 class="text-xl font-bold text-center">User Already Exists</h2>
+        <p class="text-center">Please login instead</p>
+    {% else %}
+<div class="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+
+      <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Create Account
+      </h2>
+    </div>
+    <form class="mt-8 space-y-6" form method="POST" action="{{ url_for('signup') }}">
+      <input type="hidden" name="remember" value="true">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+            <label for="signupName" class="sr-only">Name</label>
+            <input id="signupName" name="signupName" type="text" autocomplete="name" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Name">
+        </div>
+        <div>
+          <label for="signupEmail" class="sr-only">Email</label>
+          <input id="signupEmail" name="signupEmail" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email">
+        </div>
+        <div>
+          <label for="signupPassword" class="sr-only">Password</label>
+          <input id="signupPassword" name="signupPassword" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-900 hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Create Account
+        </button>
+      </div>
+    </form>
+  </div>
+    {% endif %}
+</div>
+
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

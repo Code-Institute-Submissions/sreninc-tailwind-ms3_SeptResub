@@ -72,7 +72,7 @@ def contact():
     return render_template("contact.html", title=title, header=header)
 
 
-@app.route("/signup")
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
     title = "Signup And Grow Your Restaurant"
     header = {
@@ -83,6 +83,29 @@ def signup():
     }
     if session.get("name"):
         return redirect(url_for("dashboard"))
+    
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("signupEmail").lower()})
+
+        if existing_user:
+            signup = "existing"
+            print(signup)
+            return render_template("signup.html", title=title, header=header, signup=signup)
+        else:
+            user = {
+                "email": request.form.get("signupEmail").lower(),
+                "password": generate_password_hash(request.form.get("signupPassword")),
+                "name": request.form.get("signupName")
+            }
+            _id = mongo.db.users.insert_one(user).inserted_id
+            session["name"] = request.form.get("signupName")
+            session["email"] = request.form.get("signupEmail").lower()
+            session["user"] = str(_id)
+            session["access"] = 'admin'
+            return redirect(url_for("dashboard"))
+
+    signup = ""
     return render_template("signup.html", title=title, header=header)
 
 
@@ -92,7 +115,6 @@ def signin():
         # check if email exists in db
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("loginEmail").lower()})
-        print(existing_user["_id"])
 
         if existing_user:
             # ensure hashed password matches user input

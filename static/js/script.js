@@ -238,3 +238,12 @@ function loginModal() {
         modal.classList.add('hidden');
     }
 }
+
+function signupModal() {
+    let modal = document.getElementById("signupModal");
+    if (modal.classList.contains("hidden")) {
+        modal.classList.remove('hidden');
+    } else {
+        modal.classList.add('hidden');
+    }
+}
