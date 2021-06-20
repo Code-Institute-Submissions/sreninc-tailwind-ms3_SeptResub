@@ -371,7 +371,7 @@ def guests(search=""):
     pagination = Pagination(page=page, per_page=per_page, total=total)  
 
     if session.get("name"):
-        if len(guests) == 1:
+        if len(guests) == 1 and search != "":
             return guest(guests[0]["_id"])
         else:
             return render_template('guests.html',
@@ -391,7 +391,10 @@ def guest(id):
             {"_id": ObjectId(id)})
     guest["rating"] = int(guest["rating"])
     bookings = list(mongo.db.bookings.find(
-        {"client_id": id}).sort([("date", -1), ("time", -1)]))
+        {
+            "client_id": id,
+            "account_id": ObjectId(session["account_id"])
+        }).sort([("date", -1), ("time", -1)]))
     title = guest["first_name"] + " " + guest["last_name"]
     page, per_page, offset = get_page_args(page_parameter='page',
                                            per_page_parameter='per_page')
@@ -538,7 +541,7 @@ def add_guest():
                     "notes_service": "",
                     "notes_kitchen": "",
                     "notes_allergies": "",
-                    "account_id": ObejctId(session["account_id"]),
+                    "account_id": ObjectId(session["account_id"]),
                     "created_by": session["email"],
                     "created_date": datetime.today(),
                     "updated_by": session["email"],
@@ -577,13 +580,18 @@ def bookings(date="", status=""):
         query["status"] = status
 
     if not query:
-        bookings = list(mongo.db.bookings.find())
+        bookings = list(mongo.db.bookings.find(
+                {
+                    "account_id": ObjectId(session["account_id"])
+                }
+            )
+        )
     else:
+        query["account_id"] = ObjectId(session["account_id"])
         bookings = list(mongo.db.bookings.find(query))
 
-
     clients = list(mongo.db.clients.find(
-        {},
+        {"account_id": ObjectId(session["account_id"])},
         {"first_name": 1, "last_name": 1}))
     for x in range(len(bookings)):
         written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
@@ -673,6 +681,7 @@ def add_booking(id):
             "status": request.form.get("status"),
             "value": request.form.get("value"),
             "rating": request.form.get("rating"),
+            "account_id": ObjectId(session["account_id"]),
             "created_by": session["email"],
             "created_date": datetime.today(),
             "updated_by": session["email"],
