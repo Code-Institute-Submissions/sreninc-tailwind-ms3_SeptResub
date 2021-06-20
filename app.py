@@ -165,14 +165,14 @@ def dashboard():
     bookings = list(
         mongo.db.bookings.find(
             { 
-                "account_id": session["account_id"] 
+                "account_id": ObjectId(session["account_id"]) 
             }
         )
     )
     guests = list(
                 mongo.db.clients.find(
             { 
-                "account_id": session["account_id"] 
+                "account_id": ObjectId(session["account_id"]) 
             }
         )
     )
@@ -230,18 +230,13 @@ def team():
                                            per_page_parameter='per_page')
     per_page = 5
 
-    account = mongo.db.users.find_one(
-        {"email": "sreninc@gmail.com"})["account"]
-    admin = mongo.db.users.find_one(
-        {"email": "sreninc@gmail.com"}
-    )["access"]
-    if admin == "admin":
+    if session["access"] == "admin":
         admin = "true"
     else:
         admin = "false"
-
+    print(session["account_id"])
     team = list(mongo.db.users.find({
-        "account": account
+        "account_id": ObjectId(session["account_id"])
     }).sort("name"))
     total = len(team)
     pagination_team = get_pagination(data=team, page=page, offset=offset, per_page=per_page)
@@ -263,9 +258,14 @@ def user(id):
     title = "Team"
     user = mongo.db.users.find_one(
             {"_id": ObjectId(id)})
-    print(user)
+
+    if user["email"] == session["email"] and user["access"] and "admin" and user["account_holder"]:
+        delete = "yes"
+    else:
+        delete = "no"
+
     if session.get("name"):
-        return render_template("team-detail.html", title=title, user=user)
+        return render_template("team-detail.html", title=title, user=user, delete=delete)
     return redirect(url_for("login"))
 
 
@@ -318,6 +318,7 @@ def add_user():
                     "position": request.form.get("position"),
                     "access": request.form.get("access"),
                     "password": generate_password_hash(request.form.get("password")),
+                    "account_id": ObjectId(session["account_id"]),
                     "created_by": session["email"],
                     "created_date": datetime.today(),
                     "updated_by": session["email"],
