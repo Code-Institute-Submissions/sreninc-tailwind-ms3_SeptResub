@@ -17,9 +17,16 @@ app = Flask(__name__)
 
 
 assets = Environment(app)
-css = Bundle("css/main-dev.css", output="css/main.css", filters="postcss")
+css = Bundle(
+    "css/main-dev.css",
+    output="css/main.css",
+    filters="postcss"
+    )
 
-assets.register("css", css)
+assets.register(
+    "css",
+    css
+    )
 css.build()
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
