@@ -192,10 +192,16 @@ The MongoDB database is structured as follows:
 ***
 
 ## Testing
-For all pages check the responsiveness, image quality, video quality, text display, general UX and readibility of the page on: 
-1. Chrome Browser on the 6 pre-set screen sizes in inspection mode.
-1. Android Phone on Chrome and Samsung browsers.
-1. Microsoft Edge Browser on the 6 pre-set screen sizes in inspection mode.
+The same testing checklist was used to check each page throughout the website. A checklist unique to each feature was used to 
+
+- [ ] All page content loads correctly
+- [ ] Passes lighthouse tests
+- [ ] No lorem ipsum or spelling errors
+- [ ] Page renders correctly on all inspector screen sizes
+- [ ] Hover states and CTA clicks present and correct
+- [ ] Page passes HTML, CSS and JS linters
+- [ ] Links operate as expected
+- [ ] No console errors
 
 ### Homepage
 Ensure the video can be played easily on all screen sizes.
