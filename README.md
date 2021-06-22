@@ -134,6 +134,63 @@ The purpose of this page is to get the user to signup. If the email doesn't exis
 
 ***
 
+## Database Schema
+
+The MongoDB database is structured as follows:
+- restaurant_bookings
+    - bookings
+        - _id
+        - client_id
+        - date
+        - time
+        - people
+        - status
+        - value
+        - rating
+        - account_id
+        - created_by
+        - created_date
+        - updated_by
+        - updated_date
+    - business
+        - _id
+        - email
+        - name
+    - clients
+        - _id
+        - first_name
+        - last_name
+        - email
+        - mobile
+        - marketing_consent
+        - rating
+        - dob
+        - bookings
+        - bookings_completed
+        - value
+        - notes_service
+        - notes_kitchen
+        - notes_allergies
+        - account_id
+        - created_by
+        - created_date
+        - updated_by
+        - updated_date
+    - users
+        - _id
+        - email
+        - password
+        - name
+        - access
+        - account_holder
+        - account_id
+        - created_by
+        - created_date
+        - updated_by
+        - updated_date
+
+***
+
 ## Testing
 For all pages check the responsiveness, image quality, video quality, text display, general UX and readibility of the page on: 
 1. Chrome Browser on the 6 pre-set screen sizes in inspection mode.
