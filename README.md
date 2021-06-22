@@ -148,48 +148,34 @@ Ensure the video can be played easily on all screen sizes.
 [Lighthouse]() |
 [JSLint.org]()
 
-### About
-1. Try to send the contact form with incorrect email address formatting. 
-1. Try to send the contact form with no information provided. 
-1. Try to send the contact form with no category selected.
-1. Ensure the contact form is received to the email address provided.
-1. Does the confirmation message show once the form is submitted.
+### FEATURES
 
-[W3C CSS Validator]() |
-[W3C Markup Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+### CONTACT
 
-### Dashboard
-1. Does the new user information show correctly.
-1. Can I add a negative value to the add item form. 
-1. Can I choose an expense category for income and vice-versa.
-1. Does the correct paid when option show for each frequency selected.
-1. Does the bar chart show correctly for very high values. 
-1. Can I edit and delete items in both the income and expenses tables. 
-1. Does the bar chart update correctly when creating, editing and deleting items. 
-1. Does my information get saved correctly when I leave the webpage and come back at a later time.
-1. Does the get your advice button only work when I have entered at least 1 income and 1 expense.
-1. When editing an item can I change the type of the item.
+### SIGNUP
 
-[W3C CSS Validator]() |
-[W3C Markup Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+## App Pages and Features
 
-### Results
-1. Does the dynamic text show the correct response based on my income and expenses?
-1. Do the pie charts show the correct category information?
-1. Do the charts display correctly with large values and small values mixed together?
-1. Do the advice cards appear correctly based on the pre-defined triggers?
-1. Do all the blog and action links function correctly and open in the same browser window?
-1. Can I go back to the dashboard page with ease?
-1. If no advice is available does the success text appear correctly?
+### DASHBOARD
 
-[W3C CSS Validator]() |
-[W3C Markup Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+### TEAM
+
+### TEAM DETAIL
+
+### ADD TEAM MEMBER
+
+### GUESTS
+
+### GUEST DETAIL
+
+### ADD GUEST
+
+### BOOKINGS
+
+### BOOKING DETAIL
+
+### ADD BOOKING
+ 
 
 ***
 
