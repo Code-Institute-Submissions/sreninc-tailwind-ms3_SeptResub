@@ -140,14 +140,14 @@ The MongoDB database is structured as follows:
 - restaurant_bookings
     - bookings
         - _id
-        - client_id
+        - client_id [links booking to client]
         - date
         - time
         - people
         - status
         - value
         - rating
-        - account_id
+        - account_id [links booking to account]
         - created_by
         - created_date
         - updated_by
@@ -171,7 +171,7 @@ The MongoDB database is structured as follows:
         - notes_service
         - notes_kitchen
         - notes_allergies
-        - account_id
+        - account_id [links client to account]
         - created_by
         - created_date
         - updated_by
@@ -183,7 +183,7 @@ The MongoDB database is structured as follows:
         - name
         - access
         - account_holder
-        - account_id
+        - account_id [links user to account]
         - created_by
         - created_date
         - updated_by
