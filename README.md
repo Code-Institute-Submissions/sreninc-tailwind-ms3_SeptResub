@@ -264,17 +264,9 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ## Credits and Attributions
 
-1. Code to sort maps by key values: https://stackoverflow.com/questions/31158902/is-it-possible-to-sort-a-es6-map-object/51242261
-1. chartjs.org used for all charts and examples taken from their website
-1. chartjs-datalabels used to alter the display of tables 
-1. Bootstrap
-1. Images
+1. TailwindCSS for their wealth of components and a best in class CSS system.
+1. Unsplash for their library of images
 1. My Mentor, Maranatha Ilesanmi,  for continuous helpful feedback and guidance.
 1. Fellow Code Institute students for their feedback and suggestions.
 1. stackoverflow
-1. Feather icons
-1. Unsplash Images
-
-1. [Flaticon](www.flaticon.com)
-    1. [Homepage > Income](https://www.flaticon.com/free-icon/salary_3135706?term=income&page=1&position=4&page=1&position=4&related_id=3135706&origin=search)
-    1. [Homepage > Expenses](https://www.flaticon.com/free-icon/expenses_4093960?term=expense&page=1&position=18&page=1&position=18&related_id=4093960&origin=search)
+1. Heroicons, the perfect companion to TailwindCSS
