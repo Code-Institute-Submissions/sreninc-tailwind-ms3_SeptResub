@@ -1,10 +1,10 @@
-# Financial Freedom
+# Bookler
 
-[Click To See Live Site](https://sreninc.github.io/financial-freedom/)
+[Click To See Live Site](http://tailwind-ms3-new.herokuapp.com/)
 
-Financial Freedom is the website for helping people understand, and improve their personal finances. You can input your income and expenses to monitor your monthly performance and then get advice and data to help you improve on your current financial situation. **N.B.** Financial Freedom is an educational project and is not intended to replace financial advice from an expert. If you are in need of help please contact [MABS](https://www.mabs.ie) as a first step.
+The Bookler website provides a paid solution for restaurants who want to move away from pen & paper bookings to a digital solution. It's key features are a complete CRM solution, use on any device and easy management of both bookings and guests.
 
-[![Financial Freedom](assets/img/Untitled.png)](https://sreninc.github.io/financial-freedom/)
+[![Bookler](static/img/team.jpg)](https://sreninc.github.io/tailwind-ms3/)
 
 ## Table of Content 
 
