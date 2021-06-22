@@ -189,12 +189,11 @@ Below is a log of bugs or issues identified during testing as well as details on
 ***
 
 ## Potential Future Features
-- Allow users to create an account that saves their information to website servers rather than relying on localStorage for the information. 
-- Add features for Assets & Liabilities to provide a fully rounded personal finance analysis. 
-- Offer paid services for digital coaching and advice.
-- Localized content for countries other than the Republic of Ireland.
-- Allow upload of financial statements or linking to financial institutions through the one banking system so users don't have to manually input their data. 
-- Create a budget tracker and goal setting feature that allows users to track their performance over time rather than a snapshot.  
+- Enable sms and email to be sent to guests to leave reviews after bookings that populate directly in the software. 
+- Have SMS and Email marketing options in the product to allow the restaurant owner to generate new bookings as well as manage existing ones.
+- Create a reports section with reports to help restaurants better manage their system.
+- Add a booking widget that restaurant owners can use on their websites / social media profiles etc to allow their guests to book directly into the software.
+- Add a pos element where restaurants can manage their menu items and process sales through the system. 
 
 ***
 
