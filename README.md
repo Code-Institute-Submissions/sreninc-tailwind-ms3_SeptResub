@@ -52,19 +52,16 @@ The Bookler website provides a paid solution for restaurants who want to move aw
 
 ### User Stories
 As a user I want to...
-- Input my monthly income and expenses so I can see where my money is going.
-- Update and/or delete the items I enter incase I make an error.
-- Have my information stored so I can come back to the website at a later date and not have to re-enter the information I previously provided. 
-- See my data represented graphically to help me understand where my money is going. 
-- Receive advice based on my inputted income and expenses to help me improve my personal finances.
-- Be able to contact the website owner incase I have a question or get stuck.
+- Sign up to the service to access software for my restaurant.
+- Manage my team and their access levels within the software.
+- Created, Update, Read and Delete Guests.
+- Create, Update, Read and Delete bookings.
+- Be able to add information for guests to improve their service.
 
 ### Business Stories
 As the website owner I want to...
-- Help users educate themselves on their personal finances.
-- Allow users to contact me if they have questions or encounter issues.
-- Provide further reading and action links to users so I provide additional assistance and build loyalty.
-- Allow users to update their provided information to encourage repeat visits eventually allowing me to build paid partnerships with the advice partners offered to users.
+- Get website visitors in the target market to sign up to the paid service.
+- Get website visitors in the target market who are unsure of the service or who have questions to contact the website owner.
 
 ***
 
