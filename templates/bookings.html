@@ -6,20 +6,38 @@
 
 <div class="flex flex-row flex-wrap">
     <div class="mb-5 mx-4 flex-1">
-        <label for="filterDate" class="block text-sm font-medium text-gray-700">Date</label>
+        <label for="filterDate" class="block text-sm font-medium text-gray-700">
+            Date
+        </label>
         <div class="mt-1 min-w-max">
-            <input type="date" name="filterDate" id="filterDate" value="{{ date }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md" onchange="filterBookings()">
+            <input type="date" name="filterDate" id="filterDate" value="{{ date }}"
+                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md"
+                onchange="filterBookings()">
         </div>
     </div>
     <div class="mb-5 mx-4 flex-1">
-        <label for="filterStatus" class="block text-sm font-medium text-gray-700">Status</label>
+        <label for="filterStatus" class="block text-sm font-medium text-gray-700">
+            Status
+        </label>
         <div class="mt-1 min-w-max">
-            <select id="filterStatus" name="filterStatus" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md" onchange="filterBookings()">
-                <option value="all" {{ 'selected' if status=="all" else '' }}>All Bookings</option>
-                <option value="completed" {{ 'selected' if status=="completed" else '' }}>Completed</option>
-                <option value="confirmed" {{ 'selected' if status=="confirmed" else '' }}>Confirmed</option>
-                <option value="reserved" {{ 'selected' if status=="reserved" else '' }}>Reserved</option>
-                <option value="waitlist" {{ 'selected' if status=="waitlist" else '' }}>Waitlist</option>
+            <select id="filterStatus" name="filterStatus"
+                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-400 rounded-md"
+                onchange="filterBookings()">
+                <option value="all" {{ 'selected' if status=="all" else '' }}>
+                    All Bookings
+                </option>
+                <option value="completed" {{ 'selected' if status=="completed" else '' }}>
+                    Completed
+                </option>
+                <option value="confirmed" {{ 'selected' if status=="confirmed" else '' }}>
+                    Confirmed
+                </option>
+                <option value="reserved" {{ 'selected' if status=="reserved" else '' }}>
+                    Reserved
+                </option>
+                <option value="waitlist" {{ 'selected' if status=="waitlist" else '' }}>
+                    Waitlist
+                </option>
             </select>
         </div>
     </div>
@@ -27,167 +45,195 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="flex flex-col hidden lg:block">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-green-900">
-            <tr>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Date
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Time
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Guest
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                People
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                Rating
-              </th>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Edit</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {% if bookings %}
-                {% for booking in bookings %}
-                {% set rating = 5 - booking.rating %}
-                    <tr class="bg-white">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.written_date }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.time }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 underline">
-                        <a href="{{ url_for('guest', id=booking.client_id ) }}">
-                            {{ booking.full_name }}
-                        </a>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.people }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.status.capitalize() }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {% for x in range(booking.rating) %}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-green-900">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Date
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Time
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Guest
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                People
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Rating
+                            </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">
+                                    Edit
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if bookings %}
+                        {% for booking in bookings %}
+                        {% set rating = 5 - booking.rating %}
+                        <tr class="bg-white">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.written_date }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.time }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 underline">
+                                <a href="{{ url_for('guest', id=booking.client_id ) }}">
+                                    {{ booking.full_name }}
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.people }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.status.capitalize() }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {% for x in range(booking.rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                {% endfor %}
+                                {% for x in range(rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                                {% endfor %}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="{{ url_for('booking', id=booking._id ) }}"
+                                    class="text-indigo-600 hover:text-indigo-900">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
                         {% endfor %}
-                        {% for x in range(rating) %}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                        {% endfor %}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ url_for('booking', id=booking._id ) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                    </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="7" class="text-center text-green-400 h-48 font-bold">
-                        No Bookings Yet
-                    </td>
-                </tr>
-            {% endif %}
-          </tbody>
-        </table>
-      </div>
+                        {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center text-green-400 h-48 font-bold">
+                                No Bookings Yet
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 {% for booking in bookings %}
-            {% set rating = 5 - booking.rating %}
+{% set rating = 5 - booking.rating %}
 <div class="flex flex-col mb-4 lg:hidden">
-  <div class="-my-2 overflow-x-auto -mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <tbody>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        Date
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.written_date }}
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        Time
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.time }}
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        Guest
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 underline">
-                        <a href="{{ url_for('guest', id=booking.client_id ) }}">
-                            {{ booking.full_name }}
-                        </a>
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        People
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.people }}
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        Status
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ booking.status.capitalize() }}
-                    </td>
-                </tr>
-                <tr class="bg-white">
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
-                        Rating
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {% for x in range(booking.rating) %}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                        {% endfor %}
-                        {% for x in range(rating) %}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                        {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"></th>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ url_for('booking', id=booking._id ) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="-my-2 overflow-x-auto -mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <tbody>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Date
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.written_date }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Time
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.time }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Guest
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 underline">
+                                <a href="{{ url_for('guest', id=booking.client_id ) }}">
+                                    {{ booking.full_name }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                People
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.people }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Status
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {{ booking.status.capitalize() }}
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Rating
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {% for x in range(booking.rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                {% endfor %}
+                                {% for x in range(rating) %}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline text-yellow-400"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                                </svg>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"
+                                class="bg-green-900 px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                            </th>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="{{ url_for('booking', id=booking._id ) }}"
+                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endfor %}
 {% endblock content %}
