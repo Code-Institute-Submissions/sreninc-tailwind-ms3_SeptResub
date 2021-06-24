@@ -4,66 +4,65 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div>
-  <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Guests
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        {{ stats.total_guests }}
-      </dd>
-    </div>
+    <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+                Total Guests
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                {{ stats.total_guests }}
+            </dd>
+        </div>
 
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Bookings
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        {{ stats.total_bookings }}
-      </dd>
-    </div>
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+                Total Bookings
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                {{ stats.total_bookings }}
+            </dd>
+        </div>
 
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        Total Sales
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €{{ stats.total_sales }}
-      </dd>
-    </div>
-  </dl>
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+                Total Sales
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                €{{ stats.total_sales }}
+            </dd>
+        </div>
+    </dl>
 </div>
 
-<!-- This example requires Tailwind CSS v2.0+ -->
 <div>
-  <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        % No-Shows
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        {{ stats.no_show_percentage }}%
-      </dd>
-    </div>
+    <dl class="my-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+                % No-Shows
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                {{ stats.no_show_percentage }}%
+            </dd>
+        </div>
 
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
-        % Completed
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        {{ stats.completed_percentage }}%
-      </dd>
-    </div>
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase">
+                % Completed
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                {{ stats.completed_percentage }}%
+            </dd>
+        </div>
 
-    <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
-      <dt class="text-sm font-medium text-yellow-50 truncate uppercase ">
-        Avg. Booking Value
-      </dt>
-      <dd class="mt-1 text-3xl font-semibold text-yellow-50">
-        €{{ stats.avg_booking_value }}
-      </dd>
-    </div>
-  </dl>
+        <div class="px-4 py-5 bg-green-400 shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-yellow-50 truncate uppercase ">
+                Avg. Booking Value
+            </dt>
+            <dd class="mt-1 text-3xl font-semibold text-yellow-50">
+                €{{ stats.avg_booking_value }}
+            </dd>
+        </div>
+    </dl>
 </div>
 
 {% endblock content %}
