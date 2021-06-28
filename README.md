@@ -2,49 +2,48 @@
 
 [Click To See Live Site](http://tailwind-ms3-new.herokuapp.com/)
 
-The Bookler website provides a paid solution for restaurants who want to move away from pen & paper bookings to a digital solution. It's key features are a complete CRM solution, use on any device and easy management of both bookings and guests.
+Bookler is a website and app designed for restaurants that deal with reservations and require a CRM to manage manual bookings as they move away from pen and paper diary management (which is still prevalent across the industry). 
+A key feature of the app is it's guest profiles which enable the restaurant to keep information in one place to deliver the best guest experience possible.
 
 [![Bookler](static/img/team.jpg)](https://sreninc.github.io/tailwind-ms3/)
 
-## Table of Content 
+## CONTENTS
+1. User Stories
+    - Website Visitor
+    - App User
+    - Website & App Owner
+1. Design & UX
+    - TailwindCSS
+    - Color Scheme
+    - Mockups & Wireframes
+    - Custom CSS
+1. Website Pages & Features
+    - Common Features
+    - Hompage
+    - Features
+    - Contact
+    - Signup
+1. App Pages & Features
+    - Common Features
+    - Dashboard
+    - Team
+        - Add User
+        - Edit User
+        - Delete User
+    - Guests
+        - Add Guest
+        - Edit Guest
+        - Delete Guest
+    - Bookings
+        - Add Bookings
+        - Edit Booking
+        - Delete Booking
+1. Database Schema
+1. Testing
+1. Bug Log
+1. Deployment
+1. Credits & Attribution
 
-- [Project Stories](#project-stories)
-    - [User Stories](#user-stories)
-    - [Business Stories](#business-stories)
-
-- [Design and UX](#design-and-ux)
-    - [Design and UX Research](#design-and-ux-research)
-    - [Website Wireframes](#website-wireframes)
-    - [Website Mockups](#website-mockups)
-
-- [Website Pages and Features](#website-pages-and-features)
-    - [Homepage](#homepage)
-    - [About](#about)
-        1. [Contact](#contact)
-    - [Dashboard](#dashboard)
-        1. [New User](#new-user)
-        1. [Add Item Form](#add-item-form)
-        1. [Income and Expenses Tables](#income-and-expenses-tables)
-        1. [Income and Expenses Bar Chart](#income-and-expenses-bar-chart)
-    - [Results](#results)
-        1. [Day By Day Line Graph](#day-by-day-line-graph)
-        1. [Income and Expenses Pie Charts](#income-and-expenses-pie-charts)
-        1. [Advice Cards](#advice-cards)
-        1. [Dynamic Text](#dynamic-text)
-
-- [Testing](#testing)
-    - [Homepage](#homepage)
-    - [About](#about)
-    - [Dashboard](#dashboard)
-    - [Results](#results)
-
-- [Bug Log](#bug-log)
-
-- [Potential Future Features](#potential-future-features)
-
-- [Deployment](#deployment)
-
-- [Credits and Attribution](#credits-and-attribution)
 
 ***
 
