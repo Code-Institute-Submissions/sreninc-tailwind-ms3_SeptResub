@@ -291,7 +291,7 @@
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div id="signupModal" class="{{ '' if signup == 'existing' else 'hidden' }} fixed z-10 inset-0 overflow-y-auto"
-    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    role="dialog" aria-modal="true">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
         <div onclick="signupModal()" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
@@ -318,7 +318,7 @@
                             Create Account
                         </h2>
                     </div>
-                    <form class="mt-8 space-y-6" form method="POST" action="{{ url_for('signup') }}">
+                    <form class="mt-8 space-y-6" method="POST" action="{{ url_for('signup') }}">
                         <input type="hidden" name="remember" value="true">
                         <div class="rounded-md shadow-sm -space-y-px">
                             <div>
