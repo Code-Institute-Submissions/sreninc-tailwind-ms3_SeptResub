@@ -181,8 +181,8 @@
                                 Such as preferred seating, wine choice etc.
                             </p>
                             <div class="mt-1">
-                                <textarea id="notes_service" name="notes_service" rows="3"
-                                    class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md resize-none">{{ guest.notes_service}}</textarea>
+                                <textarea id="notes_service" name="notes_service" rows="5"
+                                    class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md resize-none">{{- guest.notes_service -}}</textarea>
                             </div>
                         </div>
                         <div>
@@ -193,9 +193,9 @@
                                 Such as standard requests like meat temperature etc.
                             </p>
                             <div class="mt-1">
-                                <textarea id="notes_kitchen" name="notes_kitchen" rows="3"
+                                <textarea id="notes_kitchen" name="notes_kitchen" rows="5"
                                     class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md resize-none">
-                                    {{ guest.notes_kitchen }}
+                                    {{- guest.notes_kitchen -}}
                                 </textarea>
                             </div>
                         </div>
@@ -207,9 +207,9 @@
                                 Important information critical to the guests health.
                             </p>
                             <div class="mt-1">
-                                <textarea id="notes_allergies" name="notes_allergies" rows="3"
+                                <textarea id="notes_allergies" name="notes_allergies" rows="5"
                                     class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md resize-none">
-                                    {{ guest.notes_allergies }}
+                                    {{- guest.notes_allergies -}}
                                 </textarea>
                             </div>
                         </div>
