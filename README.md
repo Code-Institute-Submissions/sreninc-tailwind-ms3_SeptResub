@@ -115,16 +115,40 @@ The purpose of this page is to get the user to signup. If the email doesn't exis
 ## App Pages and Features
 
 ### DASHBOARD
+This page shows the restaurant (user) key statistics about their performance based on bookings and guests within Bookler. 
+- Total Guests: The count of total guests created by the restaurant
+- Total Bookings: The count of total bookings created by the restaurant
+- Total Sales: The sum of the value of bookings that are marked as "Completed"
+- % No-Shows: The count of bookings marked "No-Show" divided by the count of all other bookings.
+- % Completed: The count of booking marked "Completed" divided by the count of all other bookings.
+- Avg. Booking Value: Total Sales / Count of bookings marked "Completed"
 
 ### TEAM
+This is the page where the account managers it's authorized users, their details and access level. If the user is an admin they will see delete and edit options across all pages. If not an admin the user won't see delete options on any pages and they won't be able to edit team members.
 
-### TEAM DETAIL
+N.B. The original account creator is not able to be deleted from the team section. In addition the logged in user cannot delete themselves.
+
+There are 3 functions available from the team page:
+1. Add Team Member
+1. Edit Team Member
+1. Edit Team Member > Delete Team Member
 
 ### GUESTS
+This is the page where the account manages their guests. This is a primary page for the user and should be considered mission critical. On this page the user can see their guests listed alphabetically, paginated across pages as required with key information on each guest listed. 
 
-### GUEST DETAIL
+There are 2 functions available from the team page:
+1. Add Guest
+1. Edit Guest
+
+### GUEST DETAIL AKA Edit Guest
+This page is the full guest profile. It contains 4 sections covering important information any restaurant would need on it's guests.
+1. Personal information: THis section contains contact information for the guest as well as some useful marketing information.
+1. Notes: This section contains 3 textareas for notes that ensure an excellent guest experience is possible. 
+1. Stats: This section contains stats that are exactly the same as the dashboard statistics with the exception of total guests being replaced with Guest Age. A useful metric when evaluating top guests for a restaurant.
+1. Bookings: This section mirrors the main bookings page but is filtered to just the guests bookings ordered by date.
 
 ### BOOKINGS
+
 
 ### BOOKING DETAIL
 
