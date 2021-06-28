@@ -227,47 +227,115 @@ The same testing checklist was used to check each page throughout the website. A
 Ensure the video can be played easily on all screen sizes.
 
 [W3C CSS Validator]() |
-[W3C Markup Validator]() |
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2F) |
 [Lighthouse]() |
 [JSLint.org]()
 
 ### FEATURES
 
+[W3C CSS Validator]() |
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Ffeatures) |
+[Lighthouse]() |
+[JSLint.org]()
+
 ### CONTACT
 
+[W3C CSS Validator]() |
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Fcontact) |
+[Lighthouse]() |
+[JSLint.org]()
+
 ### SIGNUP
+I did not add a title to the quote section as it does not require one. 
+
+[W3C CSS Validator]() |
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2F8080-indigo-dog-2g4nj8u2.ws-eu08.gitpod.io%2Fsignup) |
+[Lighthouse]() |
+[JSLint.org]()
 
 ## App Pages and Features
 
 ### DASHBOARD
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### TEAM
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### TEAM DETAIL
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### ADD TEAM MEMBER
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### GUESTS
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### GUEST DETAIL
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### ADD GUEST
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### BOOKINGS
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### BOOKING DETAIL
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
 
 ### ADD BOOKING
+Markup Passed - Not linkable due to page being signin only
+
+[W3C CSS Validator]() |
+[Lighthouse]() |
+[JSLint.org]()
  
 
 ***
 
-## Bug Log
+## Bug & Issues Log
 Below is a log of bugs or issues identified during testing as well as details on how they were solved. If a bug / issue was not able to be solved then this is marked with an unchecked box to the left hand side of the item.
 
 - [] Get Advice button allowing you in without filling in both items
 - [] Large numbers breaking charts
 - [] Negative numbers allowed
+
+1. [] - Features html errors
 
 ***
 
