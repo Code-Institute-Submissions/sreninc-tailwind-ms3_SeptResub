@@ -35,6 +35,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -42,7 +43,8 @@ def index():
     header = {
         "title": "Reservations",
         "titleGreen": "made easy",
-        "subTitle": "Manage your operations in one place and get guests when you need them most.",
+        "subTitle": """Manage your operations in one place and get guests
+        when you need them most.""",
         "displayButtons": "yes"
     }
 
@@ -57,7 +59,8 @@ def features():
     header = {
         "title": "Features",
         "titleGreen": "for growth",
-        "subTitle": "Booking and guest management made to help you grow your restaurant.",
+        "subTitle": """Booking and guest management made to help you
+        grow your restaurant.""",
         "displayButtons": "yes"
     }
     if session.get("name"):
@@ -71,7 +74,8 @@ def contact():
     header = {
         "title": "Need Help?",
         "titleGreen": "We're here.",
-        "subTitle": "Let us answer your questions and guide you in the right direction.",
+        "subTitle": """Let us answer your questions and guide
+        you in the right direction.""",
         "displayButtons": "no"
     }
     if session.get("name"):
@@ -85,20 +89,25 @@ def signup():
     header = {
         "title": "On your way",
         "titleGreen": "to growth",
-        "subTitle": "Choose the package that suits your restaurant and let's get started!",
+        "subTitle": """Choose the package that suits your restaurant
+        and let's get started!""",
         "displayButtons": "no"
     }
     if session.get("name"):
         return redirect(url_for("dashboard"))
-    
+
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("signupEmail").lower()})
 
         if existing_user:
             signup = "existing"
-            print(signup)
-            return render_template("signup.html", title=title, header=header, signup=signup)
+            return render_template(
+                "signup.html",
+                title=title,
+                header=header,
+                signup=signup
+                )
         else:
             account = {
                 "email": request.form.get("signupEmail").lower(),
@@ -107,7 +116,8 @@ def signup():
             account_id = mongo.db.business.insert_one(account).inserted_id
             user = {
                 "email": request.form.get("signupEmail").lower(),
-                "password": generate_password_hash(request.form.get("signupPassword")),
+                "password": generate_password_hash(
+                    request.form.get("signupPassword")),
                 "name": request.form.get("signupName"),
                 "access": "admin",
                 "account_holder": "yes",
@@ -136,7 +146,8 @@ def signin():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("loginPassword")):
+                existing_user["password"],
+                    request.form.get("loginPassword")):
                 session["name"] = existing_user["name"]
                 session["email"] = existing_user["email"]
                 session["user"] = str(existing_user["_id"])
@@ -144,12 +155,10 @@ def signin():
                 session["account_id"] = str(existing_user["account_id"])
                 return redirect(url_for("dashboard"))
             else:
-                print("invalid")
                 return redirect(url_for("index"))
 
         else:
             # Email doesn't exist
-            print("wrong email")
             return redirect(url_for("index"))
 
     return redirect(url_for("index"))
@@ -171,17 +180,17 @@ def dashboard():
     title = "Dashboard"
     bookings = list(
         mongo.db.bookings.find(
-            { 
-                "account_id": ObjectId(session["account_id"]) 
+            {
+                "account_id": ObjectId(session["account_id"])
             }
         )
     )
     guests = list(
                 mongo.db.clients.find(
-            { 
-                "account_id": ObjectId(session["account_id"]) 
-            }
-        )
+                    {
+                        "account_id": ObjectId(session["account_id"])
+                    }
+                )
     )
 
     total_guests = len(guests)
@@ -223,11 +232,10 @@ def dashboard():
         "completed_percentage": completed_percentage,
         "avg_booking_value": avg_booking_value
     }
-    print(session.get("name"))
+
     if session.get("name"):
         return render_template("dashboard.html", title=title, stats=stats)
     return redirect(url_for("login"))
-    
 
 
 @app.route("/team")
@@ -241,22 +249,27 @@ def team():
         admin = "true"
     else:
         admin = "false"
-    print(session["account_id"])
+
     team = list(mongo.db.users.find({
         "account_id": ObjectId(session["account_id"])
     }).sort("name"))
     total = len(team)
-    pagination_team = get_pagination(data=team, page=page, offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total)  
+    pagination_team = get_pagination(data=team,
+                                     page=page,
+                                     offset=offset,
+                                     per_page=per_page
+                                     )
+    pagination = Pagination(page=page, per_page=per_page, total=total)
 
     if session.get("name"):
-        return render_template("team.html", 
-                            admin=admin, 
-                            team=pagination_team,
-                            page=page,
-                            per_page=per_page,
-                            pagination=pagination,
-                            title=title)
+        return render_template("team.html",
+                               admin=admin,
+                               team=pagination_team,
+                               page=page,
+                               per_page=per_page,
+                               pagination=pagination,
+                               title=title
+                               )
     return redirect(url_for("login"))
 
 
@@ -266,13 +279,19 @@ def user(id):
     user = mongo.db.users.find_one(
             {"_id": ObjectId(id)})
 
-    if user["email"] == session["email"] and user["access"] and "admin" and user["account_holder"]:
+    if (user["email"] == session["email"] and user["access"] and
+       "admin" and user["account_holder"]):
         delete = "yes"
     else:
         delete = "no"
 
     if session.get("name"):
-        return render_template("team-detail.html", title=title, user=user, delete=delete)
+        return render_template(
+            "team-detail.html",
+            title=title,
+            user=user,
+            delete=delete
+            )
     return redirect(url_for("login"))
 
 
@@ -281,27 +300,29 @@ def update_user(id):
     if request.form.get("password"):
         mongo.db.users.update_one(
             {"_id": ObjectId(id)},
-            {"$set": {
-                "name": request.form.get("name"),
-                "email": request.form.get("email"),
-                "access": request.form.get("access"),
-                "position": request.form.get("position"),
-                "password": request.form.get("password")
+            {
+                "$set": {
+                    "name": request.form.get("name"),
+                    "email": request.form.get("email"),
+                    "access": request.form.get("access"),
+                    "position": request.form.get("position"),
+                    "password": request.form.get("password")
                 }
             }
         )
     else:
         mongo.db.users.update_one(
             {"_id": ObjectId(id)},
-            {"$set": {
-                "name": request.form.get("name"),
-                "email": request.form.get("email"),
-                "access": request.form.get("access"),
-                "position": request.form.get("position")
+            {
+                "$set": {
+                    "name": request.form.get("name"),
+                    "email": request.form.get("email"),
+                    "access": request.form.get("access"),
+                    "position": request.form.get("position")
                 }
             }
         )
-        
+
     flash("User Updated Successfully")
     return user(id)
 
@@ -315,7 +336,10 @@ def add_user():
                 {"email": request.form.get("email").lower()})
 
             if existing_user:
-                flash("User, " + existing_user["name"] + ", already has this email address")
+                flash("User, "
+                      + existing_user["name"]
+                      + ", already has this email address"
+                      )
                 return render_template("team-add.html", title=title)
 
             else:
@@ -374,21 +398,28 @@ def guests(search=""):
         guests[x]["rating"] = int(guests[x]["rating"])
 
     total = len(guests)
-    pagination_guests = get_pagination(data=guests, page=page, offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total)  
+    pagination_guests = get_pagination(data=guests,
+                                       page=page,
+                                       offset=offset,
+                                       per_page=per_page
+                                       )
+    pagination = Pagination(page=page,
+                            per_page=per_page,
+                            total=total
+                            )
 
     if session.get("name"):
         if len(guests) == 1 and search != "":
             return guest(guests[0]["_id"])
         else:
             return render_template('guests.html',
-                                guests=pagination_guests,
-                                page=page,
-                                per_page=per_page,
-                                pagination=pagination,
-                                title=title,
-                                search=search
-                                )
+                                   guests=pagination_guests,
+                                   page=page,
+                                   per_page=per_page,
+                                   pagination=pagination,
+                                   title=title,
+                                   search=search
+                                   )
     return redirect(url_for("login"))
 
 
@@ -410,7 +441,8 @@ def guest(id):
     for x in range(len(bookings)):
         written_date = datetime.strptime(bookings[x]["date"], '%Y-%m-%d')
         bookings[x]["written_date"] = written_date.strftime("%a %d %b")
-        bookings[x]["full_name"] = guest["first_name"] + " " + guest["last_name"]
+        bookings[x]["full_name"] = guest["first_name"] + " "
+        bookings[x]["full_name"] += guest["last_name"]
         bookings[x]["rating"] = int(bookings[x]["rating"])
 
     total_bookings = len(bookings)
@@ -435,7 +467,10 @@ def guest(id):
     if completed_percentage == 0:
         completed_percentage = 0
     else:
-        completed_percentage = int((completed_percentage / total_bookings) * 100)
+        completed_percentage = int(
+                                    (completed_percentage / total_bookings)
+                                    * 100
+                                    )
 
     if no_show_percentage == 0:
         no_show_percentage = 0
@@ -447,7 +482,7 @@ def guest(id):
     years = guest_age // 365
 
     # Calculating months
-    months = (guest_age - years *365) // 30
+    months = (guest_age - years * 365) // 30
 
     # Calculating days
     days = (guest_age - years * 365 - months*30)
@@ -463,17 +498,22 @@ def guest(id):
         "avg_booking_value": avg_booking_value
     }
 
-    pagination_bookings = get_pagination(data=bookings, page=page, offset=offset, per_page=per_page)
+    pagination_bookings = get_pagination(data=bookings,
+                                         page=page,
+                                         offset=offset,
+                                         per_page=per_page
+                                         )
     pagination = Pagination(page=page, per_page=per_page, total=total_bookings)
     if session.get("name"):
-        return render_template("guest-detail.html", 
-                            guest=guest, 
-                            bookings=pagination_bookings,
-                            page=page,
-                            per_page=per_page,
-                            pagination=pagination, 
-                            stats=stats, 
-                            title=title)
+        return render_template("guest-detail.html",
+                               guest=guest,
+                               bookings=pagination_bookings,
+                               page=page,
+                               per_page=per_page,
+                               pagination=pagination,
+                               stats=stats,
+                               title=title
+                               )
     return redirect(url_for("login"))
 
 
@@ -486,34 +526,53 @@ def update_guest(id):
         if request.form.get("notes_service"):
             mongo.db.clients.update_one(
                 {"_id": ObjectId(id)},
-                {"$set": {
-                    "notes_service": request.form.get("notes_service"),
-                    "notes_kitchen": request.form.get("notes_kitchen"),
-                    "notes_allergies": request.form.get("notes_allergies")
+                {
+                    "$set": {
+                        "notes_service": request.form.get("notes_service"),
+                        "notes_kitchen": request.form.get("notes_kitchen"),
+                        "notes_allergies": request.form.get("notes_allergies")
                     }
                 }
             )
-            flash("Guest Notes for " + guest["first_name"] + " " + guest["last_name"] + " Updated Successfully")
+            flash("Guest Notes for "
+                  + guest["first_name"]
+                  + " "
+                  + guest["last_name"]
+                  + " Updated Successfully"
+                  )
         else:
-            marketing_consent = "on" if request.form.get("marketingConsent") else "off"
-            dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d') if request.form.get("dob") else ""
+            if request.form.get("marketingConsent"):
+                marketing_consent = "on"
+            else:
+                marketing_consent = "off"
+
+            if request.form.get("dob"):
+                dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d')
+            else:
+                dob = ""
+
             mongo.db.clients.update_one(
                 {"_id": ObjectId(id)},
-                {"$set": {
-                    "first_name": request.form.get("first_name"),
-                    "last_name": request.form.get("last_name"),
-                    "email_address": request.form.get("email_address"),
-                    "mobile": request.form.get("mobile"),
-                    "dob": dob,
-                    "rating": request.form.get("rating"),
-                    "marketing_consent": marketing_consent,
-                    "updated_by": "sreninc@gmail.com",
-                    "updated_date": datetime.today()
+                {
+                    "$set": {
+                        "first_name": request.form.get("first_name"),
+                        "last_name": request.form.get("last_name"),
+                        "email_address": request.form.get("email_address"),
+                        "mobile": request.form.get("mobile"),
+                        "dob": dob,
+                        "rating": request.form.get("rating"),
+                        "marketing_consent": marketing_consent,
+                        "updated_by": "sreninc@gmail.com",
+                        "updated_date": datetime.today()
                     }
                 }
             )
-            flash("Booking Details for " + guest["first_name"] + " " + guest["last_name"] + "Updated Successfully")
-            
+            flash("Booking Details for "
+                  + guest["first_name"]
+                  + " " + guest["last_name"]
+                  + "Updated Successfully"
+                  )
+
             return redirect(url_for('guest', id=id))
 
         return redirect(url_for('guest', id=id))
@@ -525,15 +584,30 @@ def add_guest():
     if session.get("name"):
         if request.method == "POST":
             existing_user = mongo.db.clients.find_one(
-            {"email": request.form.get("email").lower()})
+                {
+                    "email": request.form.get("email").lower()
+                }
+            )
 
             if existing_user:
-                flash("Guest, " + existing_user["first_name"] + " " + existing_user["last_name"] + ", already has this email address")
+                flash("Guest, "
+                      + existing_user["first_name"]
+                      + " "
+                      + existing_user["last_name"]
+                      + ", already has this email address"
+                      )
                 return render_template("guest-add.html", title=title)
 
             else:
-                marketing_consent = "on" if request.form.get("marketingConsent") else "off"
-                dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d') if request.form.get("dob") else ""
+                if request.form.get("marketingConsent"):
+                    marketing_consent = "on"
+                else:
+                    marketing_consent = "off"
+
+                if request.form.get("dob"):
+                    dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d')
+                else:
+                    dob = ""
                 client = {
                     "first_name": request.form.get("first_name"),
                     "last_name": request.form.get("last_name"),
@@ -561,7 +635,6 @@ def add_guest():
         else:
             return render_template("guest-add.html", title=title)
     return redirect(url_for("login"))
-    
 
 
 @app.route("/delete_guest/<id>", methods=["GET", "POST"])
@@ -607,9 +680,15 @@ def bookings(date="", status=""):
 
         for y in range(len(clients)):
             if str(clients[y]["_id"]) == str(bookings[x]["client_id"]):
-                bookings[x]["full_name"] = clients[y]["first_name"] + " " + clients[y]["last_name"]
+                bookings[x]["full_name"] = clients[y]["first_name"] + " "
+                bookings[x]["full_name"] += clients[y]["last_name"]
     if session.get("name"):
-        return render_template("bookings.html", bookings=bookings, title=title, date=date, status=status)
+        return render_template("bookings.html",
+                               bookings=bookings,
+                               title=title,
+                               date=date,
+                               status=status
+                               )
     return redirect(url_for("login"))
 
 
@@ -628,9 +707,12 @@ def booking(id):
     booking["full_name"] = guest["first_name"] + " " + guest["last_name"]
     booking["rating"] = int(booking["rating"])
     if session.get("name"):
-        return render_template("booking-detail.html", guest=guest, booking=booking, title=title)
+        return render_template("booking-detail.html",
+                               guest=guest,
+                               booking=booking,
+                               title=title
+                               )
     return redirect(url_for("login"))
-    
 
 
 @app.route("/update_booking/<id>", methods=["GET", "POST"])
@@ -638,7 +720,6 @@ def update_booking(id):
     if request.method == "POST":
         booking = mongo.db.bookings.find_one(
             {"_id": ObjectId(id)})
-        booking_id = booking["_id"]
 
         guest = mongo.db.clients.find_one(
             {"_id": ObjectId(booking["client_id"])})
@@ -646,31 +727,40 @@ def update_booking(id):
         if request.form.get("notes_service"):
             mongo.db.clients.update_one(
                 {"_id": ObjectId(guest["_id"])},
-                {"$set": {
-                    "notes_service": request.form.get("notes_service"),
-                    "notes_kitchen": request.form.get("notes_kitchen"),
-                    "notes_allergies": request.form.get("notes_allergies")
+                {
+                    "$set": {
+                        "notes_service": request.form.get("notes_service"),
+                        "notes_kitchen": request.form.get("notes_kitchen"),
+                        "notes_allergies": request.form.get("notes_allergies")
                     }
                 }
             )
-            flash("Guest Notes for " + guest["first_name"] + " " + guest["last_name"] + " Updated Successfully")
+            flash("Guest Notes for "
+                  + guest["first_name"]
+                  + " " + guest["last_name"]
+                  + " Updated Successfully"
+                  )
         else:
             mongo.db.bookings.update(
                 {"_id": ObjectId(id)},
-                {"$set": {
-                    "date": request.form.get("date"),
-                    "time": request.form.get("time"),
-                    "people": request.form.get("people"),
-                    "status": request.form.get("status"),
-                    "value": request.form.get("value"),
-                    "rating": request.form.get("rating"),
-                    "updated_by": "sreninc@gmail.com",
-                    "updated_date": datetime.today()
-                    }
+                {
+                    "$set": {
+                        "date": request.form.get("date"),
+                        "time": request.form.get("time"),
+                        "people": request.form.get("people"),
+                        "status": request.form.get("status"),
+                        "value": request.form.get("value"),
+                        "rating": request.form.get("rating"),
+                        "updated_by": "sreninc@gmail.com",
+                        "updated_date": datetime.today()
+                        }
                 }
             )
-            flash("Booking Details for " + guest["first_name"] + " " + guest["last_name"] + "Updated Successfully")
-            
+            flash("Booking Details for "
+                  + guest["first_name"]
+                  + " " + guest["last_name"]
+                  + "Updated Successfully")
+
             return redirect(url_for('booking', id=id))
 
         return redirect(url_for('booking', id=id))
