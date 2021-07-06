@@ -1,3 +1,4 @@
+// Used on the contact page of the website to load the contact form
 (function() {
     emailjs.init('user_S6JAlKTkHIee3fsq7Jbum');
 })();
