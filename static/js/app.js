@@ -17,7 +17,6 @@ function doneTyping () {
     window.location.href="/guests/" + myInput.value;
 }
 
-
 let userMenu = document.getElementById("toggleUserMenu");
 
 function toggleUserMenu() {
@@ -28,6 +27,7 @@ function toggleUserMenu() {
     }
 }
 
+// Builds and goes to the correct URL to filter bookings
 function filterBookings() {
     if (document.getElementById("filterDate")) {
         let date = date.value;
@@ -42,6 +42,7 @@ function filterBookings() {
     window.open("/bookings/date/" + date + "/status/" + status, "_self");
 }
 
+// Confirmation before deleting booking
 function confirmDeleteBooking(id) {
     Swal.fire({
         title: "Are you sure?",
@@ -58,6 +59,7 @@ function confirmDeleteBooking(id) {
     })
 }
 
+// COnfirmation before deleting guest
 function confirmDeleteGuest(id) {
     Swal.fire({
         title: "Are you sure?",
@@ -74,6 +76,7 @@ function confirmDeleteGuest(id) {
     })
 }
 
+// Confirmation before deleting user
 function confirmDeleteUser(id) {
     Swal.fire({
         title: "Are you sure?",
@@ -90,6 +93,7 @@ function confirmDeleteUser(id) {
     });
 }
 
+// Generates the right display of stars in rating system
 function starRating(number) {
     container = document.getElementById("starRating");
     document.getElementById("rating").value = parseInt(number) + 1;
@@ -117,6 +121,7 @@ function starRating(number) {
     }
 }
 
+// Generate tooltip 
 function tooltip(type) {
     if (type == "guest") {
         tippy(".bookler-system-set", {
@@ -138,12 +143,14 @@ for (let i = 0; i < tx.length; i++) {
   tx[i].addEventListener("input", OnInput, false);
 }
 
+// Activate autoresize for textarea
 function OnInput() {
   this.style.height = "auto";
   this.style.height = (this.scrollHeight) + "px";
 }
 
-function  stylePagination() {
+// Style pagination after generation
+function stylePagination() {
     let pagination = document.querySelector(".pagination").getElementsByTagName("LI");
     let newPagination = document.createElement("nav");
     newPagination.classList.add("border-t", "border-gray-200", "px-4", "flex", "items-center", "justify-between", "sm:px-0", "mt-12");
