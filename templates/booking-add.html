@@ -25,7 +25,7 @@
                             First name
                         </label>
                         <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
-                            <input type="text" name="first_name" id="first_name" autocomplete="given-name"
+                            <input type="text" name="first_name" id="first_name"
                                 class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 value="{{ guest.first_name }}" disabled>
                         </span>
@@ -36,9 +36,14 @@
                             Last name
                         </label>
                         <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
-                            <input type="text" name="last_name" id="last_name" autocomplete="family-name"
+                            <input
+                                type="text"
+                                name="last_name"
+                                id="last_name"
                                 class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                value="{{ guest.last_name }}" disabled>
+                                value="{{ guest.last_name }}"
+                                disabled
+                            >
                         </span>
                     </div>
 
@@ -47,7 +52,7 @@
                             Email address
                         </label>
                         <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
-                            <input type="text" name="email_address" id="email_address" autocomplete="email"
+                            <input type="text" name="email_address" id="email_address"
                                 class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 value="{{ guest.email }}" disabled>
                         </span>
@@ -58,7 +63,7 @@
                             Mobile
                         </label>
                         <span class="bookler-booking" onmouseover="tooltip('booking')" onclick="tooltip('booking')">
-                            <input type="number" name="mobile" id="mobile" autocomplete="email"
+                            <input type="number" name="mobile" id="mobile"
                                 class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 value="{{ guest.mobile }}" disabled>
                         </span>
@@ -86,17 +91,27 @@
                         <label for="people" class="block text-sm font-medium text-gray-700">
                             People
                         </label>
-                        <input type="number" name="people" id="people"
+                        <input
+                            type="number"
+                            name="people"
+                            id="people"
                             class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                            required>
+                            min="1"
+                            required
+                        >
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="value" class="block text-sm font-medium text-gray-700">
                             Booking Value
                         </label>
-                        <input type="number" name="value" id="value"
-                            class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <input
+                            type="text"
+                            name="value"
+                            id="value"
+                            pattern="^\d*(\.\d{1,2})?$"
+                            class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        >
                     </div>
 
                     <div class="sm:col-span-2">
@@ -104,9 +119,13 @@
                             Date
                         </label>
                         <div class="mt-1">
-                            <input type="date" name="date" id="date"
+                            <input
+                                type="date"
+                                name="date"
+                                id="date"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                required>
+                                required
+                            >
                         </div>
                     </div>
 
@@ -115,9 +134,13 @@
                             Time
                         </label>
                         <div class="mt-1">
-                            <input type="time" name="time" id="time"
+                            <input
+                                type="time"
+                                name="time"
+                                id="time"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                                required>
+                                required
+                            >
                         </div>
                     </div>
 
@@ -134,8 +157,26 @@
                                 <option value="confirmed">
                                     Confirmed
                                 </option>
+                                <option value="cancelled">
+                                    Cancelled
+                                </option>
+                                <option value="denied">
+                                    Denied
+                                </option>
                                 <option value="no-show">
                                     No-Show
+                                </option>
+                                <option value="requested">
+                                    Requested
+                                </option>
+                                <option value="seated">
+                                    Seated
+                                </option>
+                                <option value="table-ready">
+                                    Table Ready
+                                </option>
+                                <option value="waitlist">
+                                    Waitlist
                                 </option>
                             </select>
                         </div>
