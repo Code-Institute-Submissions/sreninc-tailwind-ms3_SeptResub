@@ -406,3 +406,5 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 1. Fellow Code Institute students for their feedback and suggestions.
 1. stackoverflow
 1. Heroicons, the perfect companion to TailwindCSS
+1. Timer Function on app searches: https://stackoverflow.com/questions/4220126/run-javascript-function-when-user-finishes-typing-instead-of-on-key-up
+1. Creating a textarea that auto-resizes: https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize
