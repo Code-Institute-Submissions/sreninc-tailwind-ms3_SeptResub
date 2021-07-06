@@ -1,5 +1,6 @@
 let mobileNav = document.getElementById("headerMobileNav");
 
+// Toggles mobile nav menu on website pages
 function toggleMobileMenu() {
     if (mobileNav.classList.contains("invisible")) {
         mobileNav.classList.remove("invisible");
@@ -8,6 +9,7 @@ function toggleMobileMenu() {
     }
 }
 
+// Toggles mobile nav menu on app pages
 function hideMobileMenu() {
     if (mobileNav.classList.contains("hidden")) {
         mobileNav.classList.remove("hidden");
@@ -16,10 +18,10 @@ function hideMobileMenu() {
     }
 }
 
-// To show popups
+// Shows sweetalert2 popup alerts
 function generateFlashMessage(message) {
-    if(message.includes("already")) {
-        Swal.fire({
+    if(message.includes("already")) { 
+        Swal.fire({ // Failed Message
             title: "Action Failed",
             text: message,
             icon: "warning",
@@ -28,7 +30,7 @@ function generateFlashMessage(message) {
         }).then((result) => {
         })
     } else {
-        Swal.fire({
+        Swal.fire({ // Success Message
         title: "Success",
         html: message,
         confirmButtonColor: "#064e3b",
@@ -53,6 +55,7 @@ function generateFlashMessage(message) {
     }
 }
 
+// Shows login modal
 function loginModal() {
     let modal = document.getElementById("loginModal");
     if (modal.classList.contains("hidden")) {
@@ -62,6 +65,7 @@ function loginModal() {
     }
 }
 
+// Shows signup modal 
 function signupModal() {
     let modal = document.getElementById("signupModal");
     if (modal.classList.contains("hidden")) {
