@@ -29,11 +29,11 @@ function toggleUserMenu() {
 
 // Builds and goes to the correct URL to filter bookings
 function filterBookings() {
+    let date = "";
     if (document.getElementById("filterDate")) {
-        let date = date.value;
-    } else {
-        date = "";
+        date = document.getElementById("filterDate").value;
     }
+
     if (document.getElementById("filterStatus")) {
         status = document.getElementById("filterStatus").value;
     } else {
