@@ -155,8 +155,26 @@
                                 <option value="confirmed" {{ 'selected' if booking.status =="confirmed" else '' }}>
                                     Confirmed
                                 </option>
+                                <option value="cancelled" {{ 'selected' if booking.status =="cancelled" else '' }}>
+                                    Cancelled
+                                </option>
+                                <option value="denied" {{ 'selected' if booking.status =="denied" else '' }}>
+                                    Denied
+                                </option>
                                 <option value="no-show" {{ 'selected' if booking.status =="no-show" else '' }}>
                                     No-Show
+                                </option>
+                                <option value="requested" {{ 'selected' if booking.status =="requested" else '' }}>
+                                    Requested
+                                </option>
+                                <option value="seated" {{ 'selected' if booking.status =="seated" else '' }}>
+                                    Seated
+                                </option>
+                                <option value="table-ready" {{ 'selected' if booking.status =="table-ready" else '' }}>
+                                    Table Ready
+                                </option>
+                                <option value="waitlist" {{ 'selected' if booking.status =="waitlist" else '' }}>
+                                    Waitlist
                                 </option>
                             </select>
                         </div>

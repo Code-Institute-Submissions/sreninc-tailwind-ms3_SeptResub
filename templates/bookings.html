@@ -26,16 +26,31 @@
                 <option value="all" {{ 'selected' if status=="all" else '' }}>
                     All Bookings
                 </option>
-                <option value="completed" {{ 'selected' if status=="completed" else '' }}>
+                <option value="completed" {{ 'selected' if status =="completed" else '' }}>
                     Completed
                 </option>
-                <option value="confirmed" {{ 'selected' if status=="confirmed" else '' }}>
+                <option value="confirmed" {{ 'selected' if status =="confirmed" else '' }}>
                     Confirmed
                 </option>
-                <option value="reserved" {{ 'selected' if status=="reserved" else '' }}>
-                    Reserved
+                <option value="cancelled" {{ 'selected' if status =="cancelled" else '' }}>
+                    Cancelled
                 </option>
-                <option value="waitlist" {{ 'selected' if status=="waitlist" else '' }}>
+                <option value="denied" {{ 'selected' if status =="denied" else '' }}>
+                    Denied
+                </option>
+                <option value="no-show" {{ 'selected' if status =="no-show" else '' }}>
+                    No-Show
+                </option>
+                <option value="requested" {{ 'selected' if status =="requested" else '' }}>
+                    Requested
+                </option>
+                <option value="seated" {{ 'selected' if status =="seated" else '' }}>
+                    Seated
+                </option>
+                <option value="table-ready" {{ 'selected' if status =="table-ready" else '' }}>
+                    Table Ready
+                </option>
+                <option value="waitlist" {{ 'selected' if status =="waitlist" else '' }}>
                     Waitlist
                 </option>
             </select>
