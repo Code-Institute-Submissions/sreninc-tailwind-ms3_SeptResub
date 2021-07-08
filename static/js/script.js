@@ -35,7 +35,7 @@ function generateFlashMessage(message) {
         html: message,
         confirmButtonColor: "#064e3b",
         confirmButtonText: "Okay",
-        timer: 1000,
+        timer: 1500,
         icon: "success",
         didOpen: () => {
             timerInterval = setInterval(() => {
