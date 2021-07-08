@@ -748,6 +748,10 @@ def update_booking(id):
                   + " Updated Successfully"
                   )
         else:
+            if request.form.get("value"):
+                value = request.form.get("value")
+            else:
+                value = 0
             mongo.db.bookings.update(
                 {"_id": ObjectId(id)},
                 {
@@ -756,7 +760,7 @@ def update_booking(id):
                         "time": request.form.get("time"),
                         "people": request.form.get("people"),
                         "status": request.form.get("status"),
-                        "value": request.form.get("value"),
+                        "value": value,
                         "rating": request.form.get("rating"),
                         "updated_by": "sreninc@gmail.com",
                         "updated_date": datetime.today()
@@ -777,13 +781,17 @@ def update_booking(id):
 def add_booking(id):
     title = "Add Booking"
     if request.method == "POST":
+        if request.form.get("value"):
+            value = request.form.get("value")
+        else:
+            value = 0
         booking = {
             "client_id": id,
             "date": request.form.get("date"),
             "time": request.form.get("time"),
             "people": request.form.get("people"),
             "status": request.form.get("status"),
-            "value": request.form.get("value"),
+            "value": value,
             "rating": request.form.get("rating"),
             "account_id": ObjectId(session["account_id"]),
             "created_by": session["email"],
