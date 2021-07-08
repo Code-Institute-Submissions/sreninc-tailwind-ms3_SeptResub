@@ -74,3 +74,9 @@ function signupModal() {
         modal.classList.add("hidden");
     }
 }
+
+// Toggles login error modal 
+function loginErrorModal() {
+    let modal = document.getElementById("loginErrorModal");
+    modal.classList.add("hidden");
+}

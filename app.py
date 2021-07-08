@@ -162,11 +162,13 @@ def signin():
                 session["account_id"] = str(existing_user["account_id"])
                 return redirect(url_for("dashboard"))
             else:
-                return redirect(url_for("index"))
+                signin_error = "yes"
+                return redirect(url_for("index", signin_error=signin_error))
 
         else:
             # Email doesn't exist
-            return redirect(url_for("index"))
+            signin_error = "yes"
+            return redirect(url_for("index", signin_error=signin_error))
 
     return redirect(url_for("index"))
 
