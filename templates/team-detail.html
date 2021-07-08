@@ -49,7 +49,7 @@
                                     Access
                                 </label>
                                 <div class="mt-1">
-                                    <select id="access" name="access" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    <select id="access" name="access" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" {{ '' if delete == 'no' else 'disabled'}}>
                                         <option value="admin" {{ 'selected' if user.access =="admin" else '' }}>
                                             Admin
                                         </option>
