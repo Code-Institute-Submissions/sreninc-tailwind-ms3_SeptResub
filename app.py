@@ -83,7 +83,7 @@ def contact():
         "titleGreen": "We're here.",
         "subTitle": """Let us answer your questions and guide
         you in the right direction.""",
-        "displayButtons": "no"
+        "displayButtons": "yes"
     }
     if session.get("name"):
         return redirect(url_for("dashboard"))
