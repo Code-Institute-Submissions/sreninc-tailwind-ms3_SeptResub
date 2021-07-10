@@ -106,8 +106,13 @@
                         <label for="people" class="block text-sm font-medium text-gray-700">
                             People
                         </label>
-                        <input type="number" name="people" id="people"
+                        <input
+                            type="number"
+                            name="people"
+                            id="people"
                             class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            min="1"
+                            reqeuired
                             value="{{ booking.people }}">
                     </div>
 
@@ -115,7 +120,11 @@
                         <label for="value" class="block text-sm font-medium text-gray-700">
                             Booking Value
                         </label>
-                        <input type="number" name="value" id="value"
+                        <input 
+                            type="text"
+                            name="value"
+                            id="value"
+                            pattern="^\d*(\.\d{1,2})?$"
                             class="p-1 mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                             value="{{ booking.value }}">
                     </div>
@@ -125,8 +134,12 @@
                             Date
                         </label>
                         <div class="mt-1">
-                            <input type="date" name="date" id="date"
+                            <input 
+                                type="date"
+                                name="date"
+                                id="date"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                required
                                 value="{{ booking.date }}">
                         </div>
                     </div>
@@ -136,8 +149,12 @@
                             Time
                         </label>
                         <div class="mt-1">
-                            <input type="time" name="time" id="time"
+                            <input 
+                                type="time"
+                                name="time"
+                                id="time"
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                required
                                 value="{{ booking.time }}">
                         </div>
                     </div>
@@ -209,7 +226,7 @@
                         Such as preferred seating, wine choice etc.
                     </p>
                     <div class="mt-1">
-                        <textarea id="notes_service" name="notes_service" rows="3"
+                        <textarea id="notes_service" name="notes_service" rows="5"
                             class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_service.strip() }}</textarea>
                     </div>
                 </div>
@@ -221,7 +238,7 @@
                         Such as standard requests like meat temperature etc.
                     </p>
                     <div class="mt-1">
-                        <textarea id="notes_kitchen" name="notes_kitchen" rows="3"
+                        <textarea id="notes_kitchen" name="notes_kitchen" rows="5"
                             class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_kitchen.strip() }}</textarea>
                     </div>
                 </div>
@@ -233,7 +250,7 @@
                         Important information critical to the guests health.
                     </p>
                     <div class="mt-1">
-                        <textarea id="notes_allergies" name="notes_allergies" rows="3"
+                        <textarea id="notes_allergies" name="notes_allergies" rows="5"
                             class="shadow-sm focus:ring-green-500 focus:border-green-500 mt-1 p-1 block w-full sm:text-sm border border-gray-300 rounded-md">{{ guest.notes_allergies.strip() }}</textarea>
                     </div>
                 </div>
