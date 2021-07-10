@@ -41,10 +41,10 @@ mongo = PyMongo(app)
 @app.errorhandler(500)
 def page_not_found(e):
     if session.get("name"):
-        print("error")
+        page_error = "yes"
+        return redirect(url_for("dashboard", page_error=page_error))
     else:
         page_error = "yes"
-        print(page_error)
         return redirect(url_for("index", page_error=page_error))
 
 
