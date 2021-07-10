@@ -80,3 +80,9 @@ function loginErrorModal() {
     let modal = document.getElementById("loginErrorModal");
     modal.classList.add("hidden");
 }
+
+// Toggles page error modal 
+function pageErrorModal() {
+    let modal = document.getElementById("pageErrorModal");
+    modal.classList.add("hidden");
+}
