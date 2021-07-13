@@ -395,6 +395,8 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 9. Create an env.py file with the below content, replaced with your details after setting up your MongoDB collection and using your favourite key generator.
 
+Click [Here](https://testdriven.io/blog/flask-htmx-tailwind) for information on setting up TailwindCSS successfully including purging css files for production.
+
 ```
 import os
 
@@ -423,3 +425,4 @@ pip3 install -r requirements.txt
 1. Heroicons, the perfect companion to TailwindCSS with quality icons used throughout the website and app.
 1. Timer Function on app searches: https://stackoverflow.com/questions/4220126/run-javascript-function-when-user-finishes-typing-instead-of-on-key-up
 1. Creating a textarea that auto-resizes: https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize
+1. TailwindCSS & Flask Guide: https://testdriven.io/blog/flask-htmx-tailwind
