@@ -393,6 +393,24 @@ $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 
 Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
+9. Create an env.py file with the below content, replaced with your details after setting up your MongoDB collection and using your favourite key generator.
+
+```
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", {your_secret_key})
+os.environ.setdefault("MONGO_URI", {your_db_uri}")
+os.environ.setdefault("MONGO_DBNAME", {your_db_name})
+```
+
+10. Install all requirements from requirements.txt file
+
+```
+pip3 install -r requirements.txt
+```
+
 ***
 
 ## Credits and Attributions
