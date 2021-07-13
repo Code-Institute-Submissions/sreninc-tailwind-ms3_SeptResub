@@ -112,6 +112,7 @@ N.B. As a demo the number and email are fake. The send message also only sends t
 The purpose of this page is to get the user to signup. If the email doesn't exist in the users db a new business will be created and a new user based on the signup details. If the email already exists the user will be redirected back to the signup page with a message informing them to login rather than signup.
 
 ## App Pages and Features
+All pages of the app have a search bar in the top navigation with placeholder text to search guests. Users can search by first name, last name, mobile or email in this search bar. However it should be noted that it is mongodb's basic search and not elastic search. The main reason for pointing this out is that it will search for close to exact database entries and won't generally return similar results as you would expect in search engines.
 
 ### DASHBOARD
 This page shows the restaurant (user) key statistics about their performance based on bookings and guests within Bookler. 
@@ -342,6 +343,7 @@ Bugs were mostly identified during usability testing referenced above. Some othe
 - Create a reports section with reports to help restaurants better manage their system.
 - Add a booking widget that restaurant owners can use on their websites / social media profiles etc to allow their guests to book directly into the software.
 - Add a pos element where restaurants can manage their menu items and process sales through the system. 
+- Improve the app search function to have elastic search.
 
 ***
 
