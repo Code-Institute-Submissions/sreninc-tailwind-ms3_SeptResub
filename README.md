@@ -329,17 +329,14 @@ Markup Passed - Not linkable due to page being signin only
 ***
 
 ## Bug & Issues Log
-Below is a log of bugs or issues identified during testing as well as details on how they were solved. If a bug / issue was not able to be solved then this is marked with an unchecked box to the left hand side of the item.
+All bugs and issues are logged under the issues tab of github linked [here](https://github.com/sreninc/tailwind-ms3/issues)
 
-- [] Get Advice button allowing you in without filling in both items
-- [] Large numbers breaking charts
-- [] Negative numbers allowed
-
-1. [] - Features html errors
+Bugs were mostly identified during usability testing referenced above. Some other issues during development were dealt with during build rather than logging an issue ex post facto.
 
 ***
 
 ## Potential Future Features
+- Photo upload for team and guests to fill profile pictures. For guest pictures in general this allows the restaurant to identify repeat clients as they walk in the door providing an increased guest experience.
 - Enable sms and email to be sent to guests to leave reviews after bookings that populate directly in the software. 
 - Have SMS and Email marketing options in the product to allow the restaurant owner to generate new bookings as well as manage existing ones.
 - Create a reports section with reports to help restaurants better manage their system.
@@ -400,11 +397,11 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ## Credits and Attributions
 
-1. TailwindCSS for their wealth of components and a best in class CSS system.
-1. Unsplash for their library of images
+1. TailwindCSS for their wealth of components and a best in class CSS system that is used on every single page of the website and app.
+1. Unsplash for their library of images used in hero images.
 1. My Mentor, Maranatha Ilesanmi,  for continuous helpful feedback and guidance.
 1. Fellow Code Institute students for their feedback and suggestions.
-1. stackoverflow
-1. Heroicons, the perfect companion to TailwindCSS
+1. Stackoverflow and W3C for their wealth of helpful information on coding which assisted me in developing the code.
+1. Heroicons, the perfect companion to TailwindCSS with quality icons used throughout the website and app.
 1. Timer Function on app searches: https://stackoverflow.com/questions/4220126/run-javascript-function-when-user-finishes-typing-instead-of-on-key-up
 1. Creating a textarea that auto-resizes: https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize
