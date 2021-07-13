@@ -17,11 +17,7 @@ app = Flask(__name__)
 
 
 assets = Environment(app)
-css = Bundle(
-    "css/main-dev.css",
-    output="css/main.css",
-    filters="postcss"
-    )
+css = Bundle("src/main.css", output="dist/main.css", filters="postcss")
 
 assets.register(
     "css",
