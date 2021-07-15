@@ -43,7 +43,7 @@
                         <div class="flex-1 px-2 flex justify-center lg:ml-6 lg:justify-end">
                             <div class="max-w-lg w-full lg:max-w-xs">
                                 <label for="search" class="sr-only">
-                                    Search
+                                    Search Guests
                                 </label>
                                 <div class="relative text-gray-400 focus-within:text-gray-600">
                                     <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -102,16 +102,16 @@
                 <!-- Mobile menu, show/hide based on menu state. -->
                 <div class="lg:hidden hidden" id="headerMobileNav">
                     <div class="px-2 pt-2 pb-3 space-y-1">
-                        <a href="{{ url_for('dashboard') }}" class="bg-green-700 text-white block rounded-md py-2 px-3 text-base font-medium">
+                        <a href="{{ url_for('dashboard') }}" class="text-white block rounded-md py-2 px-3 text-base font-medium {{ 'bg-green-700' if title == 'Dashboard' else 'hover:bg-green-500 hover:bg-opacity-75' }}">
                             Dashboard
                         </a>
-                        <a href="{{ url_for('team') }}" class="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
+                        <a href="{{ url_for('team') }}" class="text-white block rounded-md py-2 px-3 text-base font-medium {{ 'bg-green-700' if title == 'Team' else 'hover:bg-green-500 hover:bg-opacity-75' }}">
                             Team
                         </a>
-                        <a href="{{ url_for('guests') }}" class="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
+                        <a href="{{ url_for('guests') }}" class="text-white block rounded-md py-2 px-3 text-base font-medium {{ 'bg-green-700' if title == 'Guests' else 'hover:bg-green-500 hover:bg-opacity-75' }}">
                             Guests
                         </a>
-                        <a href="{{ url_for('bookings') }}" class="text-white hover:bg-green-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
+                        <a href="{{ url_for('bookings') }}" class="text-white block rounded-md py-2 px-3 text-base font-medium {{ 'bg-green-700' if title == 'Bookings' else 'hover:bg-green-500 hover:bg-opacity-75' }}">
                             Bookings
                         </a>
                     </div>
