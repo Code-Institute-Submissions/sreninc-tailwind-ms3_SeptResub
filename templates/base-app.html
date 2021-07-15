@@ -8,6 +8,7 @@
 
         {% assets 'css' %}
             <link rel="stylesheet" href="{{ ASSET_URL }}">
+            <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
         {% endassets %}
 
         <title>Bookler | {{ title }}</title>
