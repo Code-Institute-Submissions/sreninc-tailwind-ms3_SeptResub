@@ -65,26 +65,22 @@ As the website owner I want to...
 ***
 
 ## Design and UX
+The design and UX is based on my ~6 years of experience working in Restaurant Management as well as research on best practice by SAAS companies in the restaurant industry market. I chose TailwindCSS as the design system for the project because of it's focus on utilities over components, which in my opinion makes it a superior design system to Bootstrap. The great flexibility provided by Tailwind utilities gives the ability to create bespoke designs with little to no alterations via CSS files.
 
-### Design and UX Research
-There is a wide range of financial freedom and financial wellness orientated websites across various markets. Before starting the projects wireframes and mockups I looked through the top ranking website results from Google, some of which I have detailed below.
-- [daveramsey.com](https://www.daveramsey.com)
+I choose the colour scheme based off strong greens out of personal preference of a love of restaurants that use natural plants to design an intimate dining experience. While green is the primary colour it is used in accents throught with a preference given to whites and greys which serves to increase the impact of the green brand colour. refactorUI.com was a great resource for looking at how to improve layouts with small changes which guided how the brand colour was used. 
 
-The top result on Google. The website uses blue as the primary color and gold/dark yellow as a minor secondary color throughout the site. It's imagery is predominantely smiling and exhuberant people displaying overwhelmingly positive messages. It's primary focus is to get people to start with one of thier free tools today and/or purchase one of their paid items. They have a paid budgeting app. The UI is easy to use with blocks of text kept small and to the point. Images and iconography are used in every section.
+Website
+The website is built using a number of premium tailwindcss components. The aim of the website design is to drive the user to sign up as this is how the website owner will generate revenue (caveated that a future feature would be having a signup option that takes payment, this is out of scope for this particular project). Screenshots of the product are used throughout the website in addition to relevant icons and descriptions to display benefit to the user who is most likely looking for a solution to manage their bookings and guests better.
 
-- [investopedia.com](https://www.investopedia.com)
 
-The second result on Google. The website is heavily text based with no imagery until the bottom of the page. This is to be expected from a website styled as an encyclopedia however it would be unsuitable for my project. The lack of design on this site would not make it enticing for vistors of the site in this project. 
+App
+The app pages were designed as much as possible to function just as well on mobile as they do on desktop. This entailed some custom css/html setups for tables to turn them into card like components on smaller screens. I think this worked quite well on the guest and bookings pages in particular. 
 
-- [mabs.ie](https://www.mabs.com)
+Pagination was a difficult one with this project as the recommended pagination tool with flask doesn't behave well with other design systems. Implementing the desired design required manipulation in JS once the pagination was generated. After much work on getting the design right it generates nicely and I'm quite happy with how it turned out.
 
-The Irish Money Advice & Budgeting Service. Similar to daveramsey.com the primary and secondary colors are blue and gold. They have an income and expenses tool for visitors to use. It is a 4 step form where the user inputs amounts for pre-defined categories in income and expenses. At the end of the process it shows a recap coupled with displaying the surplus/deficit. The calculator works well and gives the information required and offers some set links to help the visitor increase income or decrease expenditure. What it misses is some imagery / graphical representations of the users data to help them visualize their data. 
+In the detail pages I decided to group fields together and give the section headers to help explain the purpose of the section but to also allow me to include additional items that aren't 100% necessary. An example of this would be the Stats section on the guest detail pages which gives some statistics on the particular guest. Not a necessary field for day to day work in a restaurant but very useful when a manager/owner is looking at how valuable a guest is to the restaurant.
 
-- [financialplanner.ie](https://www.financialplanner.ie)
 
-First irish website in Google results. Blue is the primary color on this website. The website is quite text heavy and as an in-person services company aims to get the visitor to fill in a contact form. They do have some calculators on the website however they have code errors stopping the calculator from working during research. 
-
-From the design and UX research it is clear that blue/gold are standard industry colors that should be used for Financial Freedom. This will help the visitor trust the website from the begining by using expected colors. It is also clear that positive imagery and explanatory iconography should be used to convey the sites purpose as much as possible so as to limit the amount of text on the website. None of the websites visited had a modern, easy to use and flexible feature for gauging your income and expenses. This will be the USP of financial freedom compared to the top Google results on google search. 
 ### Website Wireframes
 
 ### Website Mockups
@@ -148,10 +144,12 @@ This page is the full guest profile. It contains 4 sections covering important i
 1. Bookings: This section mirrors the main bookings page but is filtered to just the guests bookings ordered by date.
 
 ### BOOKINGS
+This page is where the restaurant would check their bookings for the day. As they will most frequently be checking the current days bookings the page defaults to the current date. From this page the user can filter by date and/or by booking status to see the bookings they need. From there they may edit bookings to update details. 
 
+It should be noted that there is deliberately no pagination on this page. This is because is it incredibly unlikely for a restaurant to have such an amount of bookings that it would cause the page to load and also to allow them to ctrl+f all bookings on a day should they need to do so for some reason. To back up this decision, Milano on Dawson St. in Dublin (one of Ireland's busiest restaurants) will not have more than 300 bookings on their busiest day of the year).
 
 ### BOOKING DETAIL
-
+In this page the user can update details of the booking and / or the guests notes. They aren't able to edit the guest details on this page which is a deliberate decision. If the booking has been made under the wrong guest then they have the option to delete this booking and create a new booking for the correct guest. The delete option will show to any user that is an admin. 
 
 ***
 
