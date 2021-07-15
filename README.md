@@ -256,74 +256,87 @@ I did not add a title to the quote section as it does not require one.
 
 ### DASHBOARD
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### TEAM
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### TEAM DETAIL
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### ADD TEAM MEMBER
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### GUESTS
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### GUEST DETAIL
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### ADD GUEST
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### BOOKINGS
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### BOOKING DETAIL
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
+[x] - Large Screen
+[x] - Medium Screen
+[x] - Small Screen
 
 ### ADD BOOKING
 Markup Passed - Not linkable due to page being signin only
+JS Passed
 
-[W3C CSS Validator]() |
-[Lighthouse]() |
-[JSLint.org]()
- 
+JS Passed
+
+[x] - Large Screen
+[x] - Medium Screen
+[] - Small Screen
+
+Small screen was not generating correctly on smaller screens and was updated to show correctly.
 
 ***
 
@@ -426,3 +439,4 @@ pip3 install -r requirements.txt
 1. Timer Function on app searches: https://stackoverflow.com/questions/4220126/run-javascript-function-when-user-finishes-typing-instead-of-on-key-up
 1. Creating a textarea that auto-resizes: https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize
 1. TailwindCSS & Flask Guide: https://testdriven.io/blog/flask-htmx-tailwind
+1. refactoringUI.com for their insights in improving design (as much as I was able to follow it!)
