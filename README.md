@@ -8,22 +8,16 @@ A key feature of the app is it's guest profiles which enable the restaurant to k
 [![Bookler](static/img/team.jpg)](https://sreninc.github.io/tailwind-ms3/)
 
 ## CONTENTS
-1. User Stories
-    - Website Visitor
-    - App User
-    - Website & App Owner
-1. Design & UX
-    - TailwindCSS
-    - Color Scheme
+1. [User Stories](#user-stories)
+1. [Design and UX](#design-and-ux)
     - Mockups & Wireframes
-    - Custom CSS
-1. Website Pages & Features
+1. [Website Pages and Features](#website-pages-and-features)
     - Common Features
     - Hompage
     - Features
     - Contact
     - Signup
-1. App Pages & Features
+1. [App Pages and Features](#app-pages-and-features)
     - Common Features
     - Dashboard
     - Team
@@ -38,11 +32,15 @@ A key feature of the app is it's guest profiles which enable the restaurant to k
         - Add Bookings
         - Edit Booking
         - Delete Booking
-1. Database Schema
-1. Testing
-1. Bug Log
-1. Deployment
-1. Credits & Attribution
+1. [Database Schema](#database-schema)
+1. [Testing](#testing)
+1. [Bug and Issues Log](#bug-and-issues-log)
+1. [Potential Future Features](#potential-future-features)
+1. [Deployment](#deployment)
+    - [GitHub Pages](#github-pages)
+    - [Forking the GitHub Repository](#forking-the-github-repository)
+    - [Making a Local Clone](#making-a-local-clone)
+1. [Credits & Attribution](#credits-and-attributions)
 
 
 ***
@@ -340,7 +338,7 @@ Small screen was not generating correctly on smaller screens and was updated to 
 
 ***
 
-## Bug & Issues Log
+## Bug and Issues Log
 All bugs and issues are logged under the issues tab of github linked [here](https://github.com/sreninc/tailwind-ms3/issues)
 
 Bugs were mostly identified during usability testing referenced above. Some other issues during development were dealt with during build rather than logging an issue ex post facto.
