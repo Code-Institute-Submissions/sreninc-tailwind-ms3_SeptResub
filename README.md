@@ -79,9 +79,13 @@ Pagination was a difficult one with this project as the recommended pagination t
 In the detail pages I decided to group fields together and give the section headers to help explain the purpose of the section but to also allow me to include additional items that aren't 100% necessary. An example of this would be the Stats section on the guest detail pages which gives some statistics on the particular guest. Not a necessary field for day to day work in a restaurant but very useful when a manager/owner is looking at how valuable a guest is to the restaurant.
 
 
-### Website Wireframes
-
 ### Website Mockups
+
+The below image links to figma design file for the website side of the application.
+[![Website](static/img/homepage.png)](https://www.figma.com/file/PcCqhJjJ7vCxE9Nd8rGvp9/MS3?node-id=4%3A714)
+
+The below image links to figma design file for the app side of the application.
+[![App](static/img/dashboard.png)](https://www.figma.com/file/PcCqhJjJ7vCxE9Nd8rGvp9/MS3?node-id=12%3A3356)
 
 ***
 
