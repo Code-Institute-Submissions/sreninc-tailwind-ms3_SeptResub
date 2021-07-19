@@ -188,7 +188,9 @@
 </div>
 {% endblock content %}
 {% block scripts %}
-<script>
-    stylePagination();
-</script>
+    {% if pagination.links %}
+        <script>
+            stylePagination();
+        </script>
+    {% endif %}
 {% endblock scripts %}
