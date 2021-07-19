@@ -172,11 +172,23 @@
     </div>
     {% endfor %}
 {% else %}
-    <tr>
-        <td colspan="7" class="text-center text-green-400 h-48 font-bold">
-            No Bookings Yet
-        </td>
-    </tr>
+<div class="flex flex-col mb-4 lg:hidden">
+    <div class="-my-2 overflow-x-auto -mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="text-center text-green-400 h-48 font-bold">
+                                No Guests Available
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 
 <div class="hidden">
@@ -188,7 +200,9 @@
 </div>
 {% endblock content %}
 {% block scripts %}
-<script>
-    stylePagination();
-</script>
+    {% if pagination.links %}
+        <script>
+            stylePagination();
+        </script>
+    {% endif %}
 {% endblock scripts %}
