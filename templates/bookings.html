@@ -158,6 +158,7 @@
 </div>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
+{% if bookings %}
 {% for booking in bookings %}
 {% set rating = 5 - booking.rating %}
 <div class="flex flex-col mb-4 lg:hidden">
@@ -251,4 +252,23 @@
     </div>
 </div>
 {% endfor %}
+{% else %}
+<div class="flex flex-col mb-4 lg:hidden">
+    <div class="-my-2 overflow-x-auto -mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <tbody>
+                        <tr class="bg-white">
+                            <td colspan="7" class="text-center text-green-400 h-48 font-bold">
+                                No Bookings Yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
