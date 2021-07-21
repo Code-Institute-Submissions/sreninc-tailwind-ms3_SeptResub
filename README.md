@@ -213,132 +213,186 @@ The MongoDB database is structured as follows:
 ***
 
 ## Testing
-The same testing checklist was used to check each page throughout the website. A checklist unique to each feature was used to 
+The sites initial load speed is lower than I would like with a lighthouse performance score of ~48. This is due to the TailwindCSS file containing all classes rather than just the classes used across the website and app. Unfortunately I was unable to get the process to work correctly that removes all those unnecessary classes with the available guides for Flask & Tailwind online.
 
-- [ ] All page content loads correctly
-- [ ] Passes lighthouse tests
-- [ ] No lorem ipsum or spelling errors
-- [ ] Page renders correctly on all inspector screen sizes
-- [ ] Hover states and CTA clicks present and correct
-- [ ] Page passes HTML, CSS and JS linters
-- [ ] Links operate as expected
-- [ ] No console errors
+Bugs and UI issues that were identified have been logged under the issues tab of github when they aren't mentioned below. 
 
 ### Homepage
-Ensure the video can be played easily on all screen sizes.
+- All images load correctly.
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
 
-[W3C CSS Validator]() |
-[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2F) |
-[Lighthouse]() |
-[JSLint.org]()
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2F)
 
 ### FEATURES
+- All images load correctly.
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
 
-[W3C CSS Validator]() |
-[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Ffeatures) |
-[Lighthouse]() |
-[JSLint.org]()
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Ffeatures)
 
 ### CONTACT
+- All images load correctly.
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Form validation works correctly.
+- Form gives feedback when submitted.
 
-[W3C CSS Validator]() |
-[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Fcontact) |
-[Lighthouse]() |
-[JSLint.org]()
+The form validation functioned correctly with the exception of emails where incorrectly formatted emails were accepted. Email pattern regex was added to the field.
+
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftailwind-ms3-new.herokuapp.com%2Fcontact)
 
 ### SIGNUP
-I did not add a title to the quote section as it does not require one. 
+- All images load correctly.
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Form validation works correctly for signup fields.
+- When user email already exists correct erorr message is shown.
+- When user email doesn't exist correctly loads dashboard template.
 
-[W3C CSS Validator]() |
-[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2F8080-indigo-dog-2g4nj8u2.ws-eu08.gitpod.io%2Fsignup) |
-[Lighthouse]() |
-[JSLint.org]()
+[W3C Markup Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2F8080-indigo-dog-2g4nj8u2.ws-eu08.gitpod.io%2Fsignup)
+
+### LOGIN
+- Correctly logs in user when email & password match.
+- Links correctly to signup page at bottom link.
+- Correctly shows error message when email & password aren't right.
+
+The login error message wasn't appearing so I updated the code to check url args on the index and dashboard templates to correct this. Also noticed at the same time that the page error message was incorrect so I updated that wording for 404 etc errors.
 
 ## App Pages and Features
 
 ### DASHBOARD
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Figures calculate correctly when guests and bookings are entered into the system as well as when they are removed.
 
 ### TEAM
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
 
 ### TEAM DETAIL
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Current user and account owner cannot be deleted (button won't show)
+- Cannot change the access level of account owner
+- Form validation works as expected
 
 ### ADD TEAM MEMBER
-Markup Passed - Not linkable due to page being signin only
-JS Passed
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Form validation works as expected.
+- Correct error message appears if you try and add a user with an existing email
 
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+The validation on the password field here did not match the validation in other password fields. It was updated to be consistent. 
 
 ### GUESTS
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Empty state message appears when there are no guests
+- Pagination appears correctly when sufficient guests are present.
 
 ### GUEST DETAIL
-Markup Passed - Not linkable due to page being signin only
-JS Passed
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Delete doesn't appear when guest has bookings or user is not admin
+- Stats calculate  correctly
+- Notes sections can be updated and saved.
+- Bookings section appears correctly and paginates where many bookings are present
 
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
-
-### ADD GUEST
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
-
-### BOOKINGS
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
-
-### BOOKING DETAIL
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[x] - Small Screen
+When testing the guest was able to be deleted after bookings had been made. The code was updated to stop this happening. 
 
 ### ADD BOOKING
-Markup Passed - Not linkable due to page being signin only
-JS Passed
-
-JS Passed
-
-[x] - Large Screen
-[x] - Medium Screen
-[] - Small Screen
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Form validation functions as expected. 
+- Guest details cannot be edited on this page.
 
 Small screen was not generating correctly on smaller screens and was updated to show correctly.
+
+### ADD GUEST
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Form validation works as expected.
+- Correct error message appears if you try and add a guest with an existing email
+
+### BOOKINGS
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Filters default to all bookings on the current date. 
+- Correct empty state message is shown when no bookings are available based on the chosen filters. 
+- Pagination does not appear on the page ever.
+
+
+### BOOKING DETAIL
+- Markup Passed - Not linkable due to page being signin only
+- JS Passed
+- All links function as expected and open in the same window.
+- Page looks perfect on small mobile screen.
+- Page looks perfect on tablet screen.
+- Page looks perfect on standard desktop monitor screen.
+- No console errors are present.
+- Delete doesn't appear when user is not admin
+- Notes sections can be updated and saved.
+- Form validation functions as expected.
+- Guest details cannot be edited on this page
+
 
 ***
 
@@ -357,6 +411,7 @@ Bugs were mostly identified during usability testing referenced above. Some othe
 - Add a booking widget that restaurant owners can use on their websites / social media profiles etc to allow their guests to book directly into the software.
 - Add a pos element where restaurants can manage their menu items and process sales through the system. 
 - Improve the app search function to have elastic search.
+- Reduction of CSS file to increase speed of site. 
 
 ***
 
