@@ -217,17 +217,14 @@ def dashboard():
         elif booking["status"] == "no-show":
             no_show_percentage += 1
 
-    if avg_booking_value == 0:
-        avg_booking_value = 0
-    else:
-        avg_booking_value = int(total_sales / completed_percentage)
-
-    total_sales = int(total_sales)
-
     if completed_percentage == 0:
         completed_percentage = 0
+        avg_booking_value = 0
     else:
         completed_percentage = int((completed_percentage / total_bookings) * 100)
+        avg_booking_value = int(total_sales / total_bookings)
+
+    total_sales = int(total_sales)
 
     if no_show_percentage == 0:
         no_show_percentage = 0
@@ -316,7 +313,7 @@ def update_user(id):
                     "email": request.form.get("email"),
                     "access": request.form.get("access"),
                     "position": request.form.get("position"),
-                    "password": request.form.get("password")
+                    "password": generate_password_hash(request.form.get("password"))
                 }
             }
         )
@@ -674,11 +671,12 @@ def bookings(date="", status=""):
                 {
                     "account_id": ObjectId(session["account_id"])
                 }
-            )
-        )
+            ).sort([("date", -1), ("time", -1)]))
     else:
         query["account_id"] = ObjectId(session["account_id"])
-        bookings = list(mongo.db.bookings.find(query))
+        bookings = list(
+            mongo.db.bookings.find(query).sort([("date", -1), ("time", -1)])
+            )
 
     clients = list(mongo.db.clients.find(
         {"account_id": ObjectId(session["account_id"])},
