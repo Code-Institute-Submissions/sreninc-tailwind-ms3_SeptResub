@@ -337,7 +337,7 @@ def update_user(id):
 @app.route("/add_user", methods=["GET", "POST"])
 def add_user():
     title = "Add Team Member"
-    if session.get("name"):
+    if session.get("name") and session.get["access"] == "admin":
         if request.method == "POST":
             existing_user = mongo.db.users.find_one(
                 {"email": request.form.get("email").lower()})
