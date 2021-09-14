@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form action="{{ url_for('update_guest', id=guest._id) }}" method="POST">
+            <form action="{{ url_for('update_guest', id=guest._id) }}" id="guest_detail" method="POST">
                 <div class="shadow overflow-hidden sm:rounded-md">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
@@ -163,12 +163,12 @@
                     </div>
                     <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
                         <button type="submit"
+                            form="guest_detail"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Save
                         </button>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -192,7 +192,6 @@
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form action="{{ url_for('update_guest', id=guest._id) }}" method="POST">
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                         <div>
@@ -238,6 +237,7 @@
                     </div>
                     <div class="px-4 py-3 bg-green-50 text-right sm:px-6">
                         <button type="submit"
+                            form="guest_detail"
                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                             Save
                         </button>

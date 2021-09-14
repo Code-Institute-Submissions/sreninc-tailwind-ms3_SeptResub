@@ -530,59 +530,50 @@ def update_guest(id):
         guest = mongo.db.clients.find_one(
             {"_id": ObjectId(id)})
 
-        if request.form.get("notes_service"):
-            mongo.db.clients.update_one(
-                {"_id": ObjectId(id)},
-                {
-                    "$set": {
-                        "notes_service": request.form.get("notes_service"),
-                        "notes_kitchen": request.form.get("notes_kitchen"),
-                        "notes_allergies": request.form.get("notes_allergies")
-                    }
-                }
-            )
-            flash("Guest Notes for "
-                  + guest["first_name"]
-                  + " "
-                  + guest["last_name"]
-                  + " Updated Successfully"
-                  )
+        print(request.form)
+        
+        if request.form.get("marketingConsent"):
+            marketing_consent = "on"
         else:
-            if request.form.get("marketingConsent"):
-                marketing_consent = "on"
-            else:
-                marketing_consent = "off"
+            marketing_consent = "off"
 
-            if request.form.get("dob"):
-                dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d')
-            else:
-                dob = ""
+        if request.form.get("dob"):
+            dob = datetime.strptime(request.form.get("dob"), '%Y-%m-%d')
+        else:
+            dob = ""
 
-            mongo.db.clients.update_one(
-                {"_id": ObjectId(id)},
-                {
-                    "$set": {
-                        "first_name": request.form.get("first_name"),
-                        "last_name": request.form.get("last_name"),
-                        "email_address": request.form.get("email_address"),
-                        "mobile": request.form.get("mobile"),
-                        "dob": dob,
-                        "rating": request.form.get("rating"),
-                        "marketing_consent": marketing_consent,
-                        "updated_by": "sreninc@gmail.com",
-                        "updated_date": datetime.today()
-                    }
+        notes_service = "" if request.form.get("notes_service") is None else request.form.get("notes_service")
+        notes_kitchen = "" if request.form.get("notes_kitchen") is None else request.form.get("notes_kitchen")
+        notes_allergies = "" if request.form.get("notes_allergies") is None else request.form.get("notes_allergies")
+
+        mongo.db.clients.update_one(
+            {"_id": ObjectId(id)},
+            {
+                "$set": {
+                    "first_name": request.form.get("first_name"),
+                    "last_name": request.form.get("last_name"),
+                    "email_address": request.form.get("email_address"),
+                    "mobile": request.form.get("mobile"),
+                    "dob": dob,
+                    "rating": request.form.get("rating"),
+                    "marketing_consent": marketing_consent,
+                    "updated_by": "sreninc@gmail.com",
+                    "updated_date": datetime.today(),
+                    "notes_service": notes_service,
+                    "notes_kitchen": notes_kitchen,
+                    "notes_allergies": notes_allergies
                 }
-            )
-            flash("Booking Details for "
-                  + guest["first_name"]
-                  + " " + guest["last_name"]
-                  + "Updated Successfully"
-                  )
-
-            return redirect(url_for('guest', id=id))
+            }
+        )
+        flash("Guest Details for "
+                + guest["first_name"]
+                + " " + guest["last_name"]
+                + " Updated Successfully"
+                )
 
         return redirect(url_for('guest', id=id))
+
+    return redirect(url_for('guest', id=id))
 
 
 @app.route("/add_guest", methods=["GET", "POST"])
