@@ -292,7 +292,7 @@ def user(id):
     else:
         delete = "no"
 
-    if session.get("name"):
+    if session.get("name") and session["access"] == "admin":
         return render_template(
             "team-detail.html",
             title=title,
